@@ -1,0 +1,25 @@
+# Archivos de compilación
+*.o
+*.out
+*.a
+*.so
+
+# Archivos de depuración
+*.dSYM/
+*.exe
+*.obj
+*.log
+
+# Directorios de compilación
+/build/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archivos de configuración
+.env
+
+# Visual Studio Code
+.vscode/

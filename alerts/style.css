@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    --exito: #3AB65C;
+    --error: #BF333B;
+    --info: #1898C0;
+    --alerta: #BC8C12;
+    --exito-hover: #2D8A46;
+    --error-hover: #962A31;
+    --info-hover: #147FA0;
+    --alerta-hover: #9B7512;    
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #1C1B20;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+}
+.contenedor {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto;
+}
+.hero .titulo{
+    font-weight: 800;
+    font-size: 100px;
+    margin-bottom: 40px;
+}
+.hero .contenedor__botones{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.btn{
+    padding: 10px 20px;
+    font-size: 20px;
+    background: #000000;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    border-radius: 10px;
+    transition: 0.3s ease all;
+}
+
+/*Botones*/
+.btn__exito{
+    background: var(--exito);
+}
+.btn__error{
+    background: var(--error);
+}
+.btn__info{
+    background: var(--info);
+}
+.btn__alerta{
+    background: var(--alerta);
+}
+
+/*Botones Hover*/
+.btn__exito:hover{
+    background: var(--exito-hover);
+}
+.btn__error:hover{
+    background: var(--error-hover);
+}
+.btn__info:hover{
+    background: var(--info-hover);
+}
+.btn__alerta:hover{
+    background: var(--alerta-hover);
+}
+
+/*Toast*/
+
+.contenedor__toast{
+    width: 400px;
+    height: auto;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+.toast{
+    background-color: #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+    animation-name: apertura;
+    animation-duration: 200ms;
+    animation-timing-function: ease-out;
+    position: relative;
+    overflow: hidden;
+}
+.toast__contenido{
+    display: grid;
+    grid-template-columns: 30px auto;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 10px;
+}
+.toast__tittle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-block-end: 5px;
+}
+.toast__btn{
+    background: rgba(0 0 0 /.1);
+    border: none;
+    cursor: pointer;
+    padding: 10px 5px;
+    transition: background .4s ease-in-out;
+}
+.toast__btn:hover{
+    background: rgba(0 0 0 /.3);
+}
+.toast__btn i{
+    font-size: 25px;
+    color: #FFFFFF;
+}
+.toast__icono i{
+    font-size: 35px;
+    color: rgba(255 255 255 /.4);
+}
+
+/*Colores Toast*/
+.toast--exito{
+    background-color: var(--exito);
+}
+.toast--error{
+    background-color: var(--error);
+}
+.toast--info{
+    background-color: var(--info);
+}
+.toast--alert{
+    background-color: var(--alerta);
+}
+.cerrando{
+    animation-name: cierre;
+    animation-duration: 200ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.toast--autoCierre::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(0 0 0 /.5);
+    animation-name: progreso;
+    animation-duration: 4000ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes apertura{
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes cierre{
+    from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+@keyframes progreso {
+    from{
+        width: 100%;
+    }
+    to{
+        width: 0%;
+    }
+}

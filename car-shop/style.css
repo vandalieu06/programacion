@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*Encabezado*/
+header{
+    background: url(img/background.jpg) no-repeat center top;
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header h1{
+    width: max-content;
+    padding: 20px 100px;
+    font-size: 3rem;
+    color: black;
+    border-radius: 5px;
+    background-color: rgba(240, 248, 255, 0.514);
+}
+
+/*Estilos Items*/
+.itemsOutside{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.itemsOutside > div{
+    width: 1200px;
+    box-sizing: border-box;
+    padding: 50px 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+.itemsOutside > div > .itemsInside{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 30px;
+    justify-items: center;
+    transition: all .4s ease-in;
+}
+.itemsOutside > div > .itemsInside > .item{
+    width: 220px;
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    transition: all .3s ease-in;
+}
+.itemsOutside > div > .itemsInside > .item:hover{
+     box-shadow: 0 0 10px #666;
+     transform: scale(1.05);
+}
+.itemsOutside > div > .itemsInside > .item > .itemImg{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
+}
+.itemsOutside > div > .itemsInside > .item > .itemTittle{
+    display: block;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+.itemsOutside > div > .itemsInside > .item > .itemPrice{
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1,2rem;
+}
+.itemsOutside > div > .itemsInside > .item > .itemButton{
+    display: block;
+    margin: 10px auto;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/*Carrito Estilo*/
+.carrito{
+    width: 35%;
+    margin-top: 30px;
+    margin-bottom: auto;
+    margin-right: -100%;
+    overflow: hidden;
+    border: 1px solid #666;
+    border-radius: 5px;
+    position: sticky;
+    top: 0;
+    transition: .4s;
+}
+.carrito > .carritoHeader{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 30px 0px;
+}
+.carrito > .carritoItems > .carritoItem{
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #666;
+    padding: 20px;
+}
+.carrito > .carritoItems > .carritoItem > img{
+    margin-right: 20px;
+    width: 90px;
+}
+.carrito > .carritoItems > .carritoItem > .carritoItemDetalles > .carritoItemTittle{
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.carrito > .carritoItems > .carritoItem > .carritoItemDetalles > .selectorCantidad{
+    display: flex;
+    margin-right: 30px;
+}
+.carrito > .carritoItems > .carritoItem > .carritoItemDetalles > .selectorCantidad > input{
+    border: none;
+    font-size: 18px;
+    background: transparent;
+    display: inline-block;
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+}
+.carrito > .carritoItems > .carritoItem > .carritoItemDetalles > .selectorCantidad > i{
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: center;
+    text-align: center;
+    border-radius: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.carrito > .carritoItems > .carritoItem > .carritoItemDetalles > .carritoItemPrecio{
+    font-weight: 700;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.carrito > .carritoItems > .carritoItem > .btnEliminar{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: black;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+    display: block;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carrito > .carritoItems > .carritoItem > .btnEliminar > i{
+    pointer-events: none;
+}
+.carritoTotal{
+    background: #f3f3f3;
+    padding: 30px;
+}
+.carritoTotal > .fila{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.carritoTotal > .btnPagar{
+    width: 100%;
+    display: block;
+    border: none;
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+.carritoTotal > .btnPagar:hover{
+    transform: scale(1.05);
+}
+.carritoTotal > .btnPagar:active{
+    transform: scale(1);
+}
