@@ -25,15 +25,16 @@ Lo que necesitas:
 #include <stdio.h>
 #include <string.h>
 
-struct Persona {
+typedef struct {
   char nombre[50];
   int data;
-};
+} Persona;
 
 //https://luiselectronic.com/lenguaje-c/estructuras-de-datos-en-c/
 
 int main () {
-  struct Persona persona1;
+  Persona persona1;
+
   strcpy(persona1.nombre, "Jhonny");
   persona1.data = 38;
 
