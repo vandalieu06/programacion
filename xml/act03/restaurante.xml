@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE restaurant SYSTEM "restaurante.dtd">
+
+<restaurant>
+  <sopar id="S001">
+    <taula comensals="4"/>
+    <plats>
+      <plat codi-plat="P001">
+        <nom>Paella de marisc</nom>
+        <preu>20.00</preu>
+        <ingredients>
+          <ingredient>Arròs</ingredient>
+          <ingredient>Marisc</ingredient>
+          <ingredient>All</ingredient>
+          <ingredient>Oli d'oliva</ingredient>
+        </ingredients>
+      </plat>
+      
+      <plat codi-plat="P002" >
+        <nom>Crema catalana</nom>
+        <preu>6.00</preu>
+        <ingredients>
+          <ingredient>Llet</ingredient>
+          <ingredient>Sucre</ingredient>
+          <ingredient>Ous</ingredient>
+          <ingredient>Canella</ingredient>
+        </ingredients>
+      </plat>
+    </plats>
+    <total>26.00</total>
+  </sopar>
+</restaurant>

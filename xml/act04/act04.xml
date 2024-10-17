@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<habitatges>
+  <habitatge>
+    <tipus>pis</tipus>
+    <referencia>HAB001</referencia>
+    <direccio>Carrer de la Pau, 12, Barcelona</direccio>
+    <estat>venda</estat>
+    <preu moneda="eur">250000</preu>
+  </habitatge>
+  <habitatge>
+    <tipus>casa</tipus>
+    <referencia>HAB002</referencia>
+    <direccio>Avinguda de la Llibertat, 45, Madrid</direccio>
+    <estat>lloguer</estat>
+    <preu moneda="eur">1500</preu>
+  </habitatge>
+  <habitatge>
+    <tipus>dúplex</tipus>
+    <referencia>HAB003</referencia>
+    <direccio>Carrer del Sol, 8, València</direccio>
+    <estat>venda</estat>
+    <preu moneda="eur">300000</preu>
+  </habitatge>
+</habitatges>

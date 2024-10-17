@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE llistacompra SYSTEM "departaments.dtd">
+
+<llistacompra>
+  <venda id="V001">
+    <vendacredit>
+      <datafipagament>2024-10-14</datafipagament>
+      <quantitat>10</quantitat>
+    </vendacredit>
+  </venda>
+  <venda id="V002">
+    <vendainmediat>
+      <quantitat>10</quantitat>
+      <divisa>10</divisa>
+    </vendainmediat>
+  </venda>
+</llistacompra>

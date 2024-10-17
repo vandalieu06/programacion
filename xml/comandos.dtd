@@ -1,0 +1,19 @@
+
+<!ELEMENT tienda (cliente+, pedido+)>
+
+<!ELEMENT cliente (nombre_cliente, direccion, correo, telefono?)>
+  <!ELEMENT nombre_cliente (#PCDATA)>
+  <!ELEMENT direccion (#PCDATA)>
+  <!ELEMENT correo (#PCDATA)>
+  <!ELEMENT telefono (#PCDATA)>
+
+<!ELEMENT pedido (producto*, fecha?, total)>
+  <!ELEMENT producto (nombre_producto, precio, cantidad)>
+    <!ELEMENT nombre_producto (#PCDATA)>
+    <!ELEMENT precio (#PCDATA)>
+    <!ELEMENT cantidad (#PCDATA)>
+    <!ELEMENT fecha (#PCDATA)>
+    <!ELEMENT total (#PCDATA)>
+
+<!ATTLIST cliente id ID #REQUIRED telefono CDATA #IMPLIED>
+<!ATTLIST producto id ID #REQUIRED>

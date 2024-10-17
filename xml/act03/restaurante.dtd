@@ -1,0 +1,40 @@
+<!-- Definim el element pare i aquest tindra un o mes elements anomenats soapr -->
+<!ELEMENT restaurant (sopar+)>
+
+<!-- Definim el element sopar i aquest contindra tres elements -->
+  <!ELEMENT sopar (taula, plats, total)>
+
+<!--  Definim el element taula i aquest contindra un element anomenat comensal -->
+    <!ELEMENT taula (#PCDATA)>
+
+<!-- Definim un element anomenat plats i diem que aquest contindra 1 o mes elements anomenats plat -->
+    <!ELEMENT plats (plat+)>
+
+<!-- Definim el element anomenat plat i aquest contindra els elements anomenats nom, preu i ingredients -->
+      <!ELEMENT plat (nom, preu, ingredients)>
+
+<!-- Definim que el element nom i aquest contindra text per que hem definit (#PCDATA) -->
+        <!ELEMENT nom (#PCDATA)>
+
+<!-- Definim que el element preu i aquest contindra text per que hem definit (#PCDATA) -->
+        <!ELEMENT preu (#PCDATA)>
+
+<!-- Definim que el element ingredients que contindra un o mes elements anomenat ingredient -->
+        <!ELEMENT ingredients (ingredient+)>
+
+<!-- Definim que el element ingredient contindra text -->
+          <!ELEMENT ingredient (#PCDATA)>
+
+<!-- Definim el element total contindra text -->
+    <!ELEMENT total (#PCDATA)>
+
+<!--  Definim que taula tindra un atrbut anomenta comensals -->
+
+<!--  La taula tindra un atribut que es posaran el nombre comensals que hi han a la taula-->
+<!ATTLIST sopar id ID #REQUIRED>
+
+<!--  La taula tindra un atribut que es posaran el nombre comensals que hi han a la taula-->
+<!ATTLIST taula comensals CDATA #IMPLIED>
+
+<!--  Els plats tindran un atribut anomenat id per identificar a cada plat del restaurant-->
+<!ATTLIST plat codi-plat CDATA #REQUIRED>

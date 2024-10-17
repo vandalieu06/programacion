@@ -1,0 +1,9 @@
+<!ELEMENT llistacompra (venda+)>
+<!ELEMENT venda (vendacredit | vendainmediat)>
+<!ELEMENT vendacredit (datafipagament?, quantitat)>
+<!ELEMENT vendainmediat (quantitat, divisa)>
+<!ELEMENT datafipagament (#PCDATA)>
+<!ELEMENT quantitat (#PCDATA)>
+<!ELEMENT divisa (#PCDATA)>
+
+<!ATTLIST venda id ID #REQUIRED>
