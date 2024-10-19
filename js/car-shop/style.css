@@ -49,7 +49,7 @@ header h1 {
 .itemsOutside > div > .itemsInside > .item {
   width: 220px;
   padding: 10px;
-  //border: 1px solid #666;
+  border: 1px solid #666;
   border-radius: 8px;
   transition: all 0.3s ease-in;
 }
