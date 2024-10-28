@@ -181,7 +181,7 @@ function pagarClicked(event) {
   }
   setTimeout(()=> {
     ocultarCarrito();
-  }, 3000)
+  }, 500)
 }
 
 //Funcion que añade funcionalidades a los botones y agregar al carrito a los elementos
