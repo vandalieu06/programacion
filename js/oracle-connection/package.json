@@ -1,6 +1,6 @@
 {
   "type": "module",
   "dependencies": {
-    "oracledb": "^6.6.0"
+    "oracledb": "/home/vandalieu06/descargas/tmp/node-oracledb"
   }
 }

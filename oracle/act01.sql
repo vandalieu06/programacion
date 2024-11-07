@@ -27,15 +27,17 @@ CREATE TABLE paquet (
     paquetId    NUMBER,
     camionerId  NUMBER,
     provencaId 	NUMBER,
-    codi        NUMBER,
+    codi        VARCHAR(10),
     descripcio  VARCHAR(200),
     destinatari VARCHAR(100),
     adreca      VARCHAR(200),
     
     CONSTRAINT pk_paquet_id PRIMARY KEY (paquetId),
-    CONSTRAINT fk_camioner_id FOREIGN KEY (camionerId) REFERENCES camioner(camionerId),
-    CONSTRAINT fk_provenca_id FOREIGN KEY (provencaId) REFERENCES provenca(provencaId)
+    CONSTRAINT fk_paquet_camioner_id FOREIGN KEY (camionerId) REFERENCES camioner(camionerId) ON DELETE SET NULL,
+    CONSTRAINT fk_paquet_provenca_id FOREIGN KEY (provencaId) REFERENCES provenca(provencaId)
 );
+
+
 
 CREATE TABLE camio(
     camioId     NUMBER,
@@ -56,8 +58,8 @@ CREATE TABLE condueix(
     data_final		DATE,
     
     CONSTRAINT pk_condueix_id PRIMARY KEY (condueixId),
-    CONSTRAINT fk_camio_id FOREIGN KEY (camioId) REFERENCES camio(camioId),
-    CONSTRAINT fk_camioner_id FOREIGN KEY (camionerId) REFERENCES camioner(camionerId)
+    CONSTRAINT fk_condueix_camio_id FOREIGN KEY (camioId) REFERENCES camio(camioId),
+    CONSTRAINT fk_condueix_camioner_id FOREIGN KEY (camionerId) REFERENCES camioner(camionerId) ON DELETE SET NULL
 );
 
 -- EX 2 --
@@ -72,24 +74,28 @@ INSERT INTO camioner (camionerId, dni, nom, cognom, poblacio, mobil, salari)
 	VALUES (13, '65836564S', 'Guti', 'Gutierrez', 'Sabadell', 647645828, 2500);
 
 -- Provincias
-INSERT INTO proveca (provecaId, codi_postal, nom)
+INSERT INTO provenca (provencaId, codi_postal, nom)
 	VALUES (1, '08204', 'Sabadell');
-INSERT INTO proveca (provecaId, codi_postal, nom)
+INSERT INTO provenca (provencaId, codi_postal, nom)
 	VALUES (2, '08210', 'Terrassa');
 
 -- Paquetes
-INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinatari, carrer)
+INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinatari, adreca)
 	VALUES (1, 10, 1, 'PAQ101', 'Paqeute que contiene figuras anime', 'Miquel Segon Soler', 'Carrer de Nadal 57 bis');
-INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinatari, carrer)
+INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinatari, adreca)
 	VALUES (2, 13, 2, 'PAQ102', 'Paqeute que contiene libros con tematica anime', 'Joan Garcia Lopez', 'Carrer de Nadal 57 bis');
 
+--SELECT * FROM paquet;
+
 -- Camiones
-INSERT INTO camio (camioId, matricula, model, tipus, potencia)
+INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (1, '1234ABC', 'Seat', 'Grande', 100);
-INSERT INTO camio (camioId, matricula, model, tipus, potencia)
+INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (2, '4321CVB', 'Mercedes', 'Grande', 150);
-INSERT INTO camio (camioId, matricula, model, tipus, potencia)
+INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (3, '7253CVC', 'Seat', 'Grande', 200);
+
+SELECT * FROM camio;
 
 -- Que camion conduce el conductor
 INSERT INTO condueix (condueixId, camionerId, camioId, data_inicial)
@@ -101,8 +107,12 @@ INSERT INTO condueix (condueixId, camionerId, camioId, data_inicial)
 INSERT INTO condueix (condueixId, camionerId, camioId, data_inicial)
 	VALUES (4, 13, 2, '03-11-2024');
 
+--SELECT * FROM condueix;
+
+
 -- EX 3
 ALTER TABLE camioner ADD data_neixement DATE;
+--SELECT * FROM camioner;
 
 -- EX 4
 UPDATE camioner 
@@ -122,10 +132,29 @@ UPDATE camioner
 UPDATE paquet SET provencaId = 1;
 
 -- EX 6
-DELETE FROM camioner 
+--Poner a null las ref al camionero 10 o eliminarlas.
+--OOOooooooo modificar las fk a camionero con un ON DELETE SET NULL
+-- ON DELETE SET NULL en las tablas condueix y paquet
+
+DELETE FROM camioner
 	WHERE camionerId = 10;
 
+-- EX 7
+/*
+DROP TABLE camioner CASCADE CONSTRAINTS PURGE;
+DROP TABLE provenca CASCADE CONSTRAINTS PURGE;
+DROP TABLE paquet CASCADE CONSTRAINTS PURGE;
+DROP TABLE camio CASCADE CONSTRAINTS PURGE;
+DROP TABLE condueix CASCADE CONSTRAINTS PURGE;
+*/
 
+--SELECT de las tablas
+
+SELECT * FROM camioner;
+SELECT * FROM provenca;
+SELECT * FROM paquet;
+SELECT * FROM camio;
+SELECT * FROM condueix;
 
 
 
