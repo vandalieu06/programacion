@@ -1,0 +1,16 @@
+.library {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.book {
+  width: 300px;
+}
+.book__img {
+  width: 200px;
+  height: 300px;
+  aspect-ratio: 9/16;
+  display: block;
+}

@@ -85,8 +85,6 @@ INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinat
 INSERT INTO paquet (paquetId, camionerId, provencaId, codi, descripcio, destinatari, adreca)
 	VALUES (2, 13, 2, 'PAQ102', 'Paqeute que contiene libros con tematica anime', 'Joan Garcia Lopez', 'Carrer de Nadal 57 bis');
 
---SELECT * FROM paquet;
-
 -- Camiones
 INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (1, '1234ABC', 'Seat', 'Grande', 100);
@@ -94,8 +92,6 @@ INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (2, '4321CVB', 'Mercedes', 'Grande', 150);
 INSERT INTO camio (camioId, matricula, camioModel, tipus, potencia)
 	VALUES (3, '7253CVC', 'Seat', 'Grande', 200);
-
-SELECT * FROM camio;
 
 -- Que camion conduce el conductor
 INSERT INTO condueix (condueixId, camionerId, camioId, data_inicial)
@@ -112,7 +108,6 @@ INSERT INTO condueix (condueixId, camionerId, camioId, data_inicial)
 
 -- EX 3
 ALTER TABLE camioner ADD data_neixement DATE;
---SELECT * FROM camioner;
 
 -- EX 4
 UPDATE camioner 
