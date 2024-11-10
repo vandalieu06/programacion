@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const { jugadorSelect } = require("./main.js");
+const { bookSelect } = require("./database.js");
 
 const app = express();
 const PORT = 3000;
@@ -17,7 +17,9 @@ app.get("/", (req, res) => {
 
 // SQLITE
 app.get("/api/books", (req, res) => {
-  const response = jugadorSelect();
-  console.log("server.js: ", response);
-  res.json(response);
+ 
+  bookSelect((err, books) => {
+    res.json(books)
+  });
+
 });

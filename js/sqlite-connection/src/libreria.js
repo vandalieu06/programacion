@@ -24,32 +24,34 @@ const tmpBook = [
 const books = async () => {
   try {
     const response = await fetch("/api/books");
-    if (!response.ok) {
-      console.log("Error al obtener los datos...");
-      return;
-    }
+    if (!response.ok) return console.log("Error al obtener los datos...");
 
     const data = await response.json();
-    console.log(response);
+    return data;
+
   } catch (e) {
     console.error(e);
   }
 };
 
-books();
+async function printBooks() {
+  const book = await books();
+  console.log(Object.keys(book).length)
+  for (let i = 0; i < Object.keys(book).length; i++) {
+    console.log(book[i])
 
-for (let i = 0; i < tmpBook.length; i++) {
-  const divBook = document.createElement("div");
-  divBook.classList.add("book");
+    const divBook = document.createElement("div");
+    divBook.classList.add("book");
+    const componentBook = `
+          <img src="${tmpBook[i].srcFrontpage}" class="book__img" />
+          <h3 class="book__title">${tmpBook[i].title}</h3>
+          <p class="book__autor">${tmpBook[i].autor}</p>
+          <p class="book__description">${tmpBook[i].description}</p>
+          <p class="book__price">${tmpBook[i].price}€</p>
+      `;
+    divBook.innerHTML = componentBook;
 
-  const componentBook = `
-        <img src="${tmpBook[i].srcFrontpage}" class="book__img" />
-        <h3 class="book__title">${tmpBook[i].title}</h3>
-        <p class="book__autor">${tmpBook[i].autor}</p>
-        <p class="book__description">${tmpBook[i].description}</p>
-        <p class="book__price">${tmpBook[i].price}€</p>
-    `;
-  divBook.innerHTML = componentBook;
-
-  divLibrary.append(divBook);
+    divLibrary.append(divBook);
+  }
 }
+printBooks();
