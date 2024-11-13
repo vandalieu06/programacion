@@ -6,4 +6,5 @@ import (
 
 func main() {
 	funciones.Variables()
+	funciones.Loops()
 }

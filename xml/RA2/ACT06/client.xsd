@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="clients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="client" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" type="xs:string"/>
+              <xs:element name="apellidos" type="xs:string"/>
+              <xs:element name="telf" type="xs:int"/>
+              <xs:element name="email" type="xs:string"/>
+              <xs:element name="direccion" maxOccurs="unbounded"> 
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="calle" type="xs:string"/>
+                    <xs:element name="numero" type="xs:int"/>
+                    <xs:element name="codigo-postal" type="xs:int"/>
+                    <xs:element name="ciudad" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

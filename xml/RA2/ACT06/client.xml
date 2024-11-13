@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clients xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./client.xsd">
+ <client>
+  <nombre>Juan</nombre>
+  <apellidos>Pérez González</apellidos>
+  <telf>999666333</telf>
+  <email>email@google.com</email>
+  <direccion>
+    <calle>Carrer de Nadal</calle>
+    <numero>57</numero>
+    <codigo-postal>08204</codigo-postal>
+    <ciudad>Sabadell</ciudad>
+  </direccion>
+ </client>
+ 
+ <client>
+  <nombre>Maria</nombre>
+  <apellidos>Ruiz Martínez</apellidos>
+  <telf>999666333</telf>
+  <email>email@google.com</email>
+  <direccion>
+    <calle>Carretera Barcelona</calle>
+    <numero>103</numero>
+    <codigo-postal>08205</codigo-postal>
+    <ciudad>Sabadell</ciudad>
+  </direccion>
+ </client>
+</clients>
