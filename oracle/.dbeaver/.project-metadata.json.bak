@@ -1,1 +1,1 @@
-{"resources":{"act01.sql":{"default-datasource":"oracle_thin-19305fc0f03-74cf2d3650b7991d","default-schema":"DAW25"}}}
+{"resources":{"Scripts/act02.sql":{"default-datasource":"oracle_thin-19305fc0f03-74cf2d3650b7991d","default-schema":"DAW25"},"act01.sql":{"default-schema":"DAW25","default-datasource":"oracle_thin-19305fc0f03-74cf2d3650b7991d"}}}

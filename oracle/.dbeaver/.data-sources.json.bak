@@ -1,25 +1,32 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-19305e6f163-28907c3ddd8bb29d": {
+		"oracle_thin-19305fc0f03-74cf2d3650b7991d": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "ORCL",
+			"name": "localhost",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
 				"port": "1521",
-				"database": "ORCL",
-				"url": "jdbc:oracle:thin:@//localhost:1521/ORCL",
+				"database": "xe",
+				"url": "jdbc:oracle:thin:@localhost:1521:xe",
 				"configurationType": "MANUAL",
 				"type": "dev",
 				"closeIdleConnection": true,
 				"provider-properties": {
 					"@dbeaver-connection-type@": "BASIC",
-					"@dbeaver-sid-service@": "SERVICE"
+					"@dbeaver-sid-service@": "SID"
 				},
 				"auth-model": "oracle_native"
-			}
+			},
+			"filters": [
+				{
+					"type": "org.jkiss.dbeaver.ext.oracle.model.OracleSchema",
+					"enabled": true,
+					"exclude": ["APEX*","ANONYMOUS","XS*","HR","FLOWS*"]
+				}
+			]
 		}
 	},
 	"connection-types": {
