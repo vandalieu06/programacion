@@ -82,8 +82,8 @@ float calcularDescuentoProducto(struct Inventario *producto, int iProducto, floa
   if (iProducto < 1){
     return 0;
   }
-  float fDescuentoReal = iDescuento / 100;
-  float iTotal = (producto[iProducto - 1].precio * fDescuentoReal);
+  float fDescuentoReal = 1 - (iDescuento / 100);
+  float iTotal = producto[iProducto - 1].precio * fDescuentoReal;
   return iTotal;
 }
 
@@ -124,10 +124,17 @@ int main() {
         printf("El precio del total de productos con IVA es de: %.2f\n", iInventarioTotalIva);
         break;
       case 5:
-        float iInventarioTotal = cacluarTotalInventario(producto, iProducto);
+        float iInventarioTotal = cacluarTotalInventario(producto, iProductos);
         printf("El precio del total de productos con sin IVA es de: %.2f\n", iInventarioTotal);
         break;
       case 6:
+        printf("De que producto desea obtener el descuento: ");
+        scanf("%d", &iProducto);
+        printf("Introduce el descuento: que desea aplicar (1 /%/ a 100%): ");
+        int iDescuento = 21;
+        scanf("%d", &iDescuento);
+        float iProdutoDescuento = calcularDescuentoProducto(producto, iProducto, iDescuento);
+        printf("El producto con descuento da un valor de: %.2f\n", iProdutoDescuento);
         break;
       case 7:
         printf("Saliendo...\n");
@@ -139,10 +146,3 @@ int main() {
 
   return 0;
 }
-
-/*
-//Calcura producto con descuento
-int iDescuento = 21;
-float iProdutoDescuento = calcularDescuentoProducto(producto, iNum, iDescuento);
-
-*/

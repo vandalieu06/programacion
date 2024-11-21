@@ -19,6 +19,7 @@ CREATE TABLE suite (
 	CONSTRAINT uk_suite_codi UNIQUE (codi)
 	--CONSTdRAINT ck_estat CHECK (estat IN ('Lliure', 'Manteniment', 'Ocupat'))
 );
+
 CREATE TABLE pollastre(
 	pollastreId		NUMBER,
 	suiteId			NUMBER,
@@ -93,6 +94,7 @@ INSERT INTO reserva (reservaId, pollastreId, tractamentId, data_reserva)
 INSERT INTO reserva (reservaId, pollastreId, tractamentId, data_reserva)
 	VALUES (4, 1, 4, '02-12-2017');	
 
+COMMIT;
 
 --UPDATE
 UPDATE pollastre
@@ -105,19 +107,36 @@ UPDATE reserva
 	SET data_reserva = '1-12-2017'
 	WHERE tractamentId = 4;
 
+COMMIT;
+
 --SELECT
 SELECT * FROM suite;
 SELECT * FROM pollastre;
 SELECT * FROM tractament;
 SELECT * FROM reserva;
 
+-- EXTRA
+-- AÑADIR UNA REGLA PARA QUE EL COLORE DE LOS POLLOS SOLO PUEDA SER:
+-- "ROJO, VERDE, AZUL, AMARILLO"
+UPDATE pollastre SET color = NULL;
+
+ALTER TABLE pollastre 
+	ADD CONSTRAINT ck_pollo_color 
+		CHECK (color IN ('ROJO', 'VERDE', 'AZUL', 'AMARILLO'));
+
+UPDATE pollastre SET color = 'ROJO' WHERE pollastreId = 1;
 
 
+-- AÑADIR UNA CONTROL PARA QUE QUE EL NOMBRE DE POLLO SEA OBLIGATORIO
+ALTER TABLE pollastre ADD CONSTRAINT ck_pollastre_nom CHECK (nom IS NOT NULL);
 
+-- MODIFICAR EL NOMBRE DEL CAMPO CHIP/CODI a CODI_CHIP
+--UPDATE pollastre MODIFY codi 
+ALTER TABLE pollastre 
+	RENAME COLUMN codi TO codi_chip;
 
+--AMPLIA EL TAMAÑO DEL NOMBRE DEL TRATAMIENTO A 1111 CARACTERES
 
-
-
-
-
+ALTER TABLE tractament 
+	MODIFY nom VARCHAR(1111);
 

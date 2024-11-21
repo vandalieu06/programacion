@@ -16,7 +16,8 @@ func Loops() {
 	}
 
 	fmt.Println("\n-- LOOP FOR WHILE") // Println pone un salt de linea (\n) al final del texto
-	for true {
-		fmt.Printf("Estamos en el ciclo %d\n", i+1) // Similar al printf de C
+	var iComprovacion int = 10
+	for iComprovacion == 10 {
+		fmt.Printf("Estamos en el ciclo %d\n", 1) // Similar al printf de C
 	}
 }
