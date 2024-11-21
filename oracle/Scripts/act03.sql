@@ -17,6 +17,9 @@ CREATE TABLE taula (
 	CONSTRAINT ck_categoria_taula CHECK (categoria IN ('A', 'B', 'C', 'D'))
 );
 
+/*Comentario para guardar las tablas creadas*/
+COMMIT;
+
 CREATE TABLE elf (
 	elfId			NUMBER,
 	taulaId			NUMBER,
@@ -34,6 +37,9 @@ CREATE TABLE elf (
 	CONSTRAINT ck_categoria_elf CHECK (categoria IN ('A', 'B', 'C', 'D'))
 );
 
+/*Comentario para guardar las tablas creadas*/
+COMMIT;
+
 CREATE TABLE joguines (
 	joguinesId		NUMBER,
 	taulaId			NUMBER,
@@ -45,6 +51,8 @@ CREATE TABLE joguines (
 	CONSTRAINT pk_id_joguines PRIMARY KEY (joguinesId),
 	CONSTRAINT fk_id_taula_joguines FOREIGN KEY (taulaId) REFERENCES taula(taulaId)
 );
+/*Comentario para guardar las tablas creadas*/
+COMMIT;
 
 /*INSERT DE DATOS EN LAS TABLAS*/
 /*TAULA*/
@@ -62,6 +70,9 @@ INSERT INTO taula (taulaId, codi, nom, dimensions, tipus, categoria)
 	VALUES(6, 'taula6', 'La mini taula', 5, 'Fusta', 'C');
 INSERT INTO taula (taulaId, codi, nom, dimensions, tipus, categoria)
 	VALUES(7, 'taula7', 'SntaTrex', 25, 'Textil', 'C');
+
+/*Comentaria para que si todo esta perfecto guardarlos sino hacer un rollback al anterior*/
+COMMIT;
 
 /*ELF*/
 INSERT INTO elf (elfId, taulaId, nom, alzada, pes, color_preferit, categoria)
@@ -82,6 +93,9 @@ INSERT INTO elf (elfId, taulaId, nom, alzada, pes, color_preferit, categoria)
 	VALUES (8, 7, 'Narain', 0.78, 10, 'Blau', 'B');
 INSERT INTO elf (elfId, taulaId, nom, alzada, pes, color_preferit, categoria)
 	VALUES (9, 7, 'Tsohley', 0.69, 11, 'Vermell', 'A');
+
+/*Comentaria para que si todo esta perfecto guardarlos sino hacer un rollback al anterior*/
+COMMIT;
 
 /*JOGUINES*/
 INSERT INTO joguines (joguinesId, taulaId, nom, pes, temps_fabrica, descripcio)
@@ -109,6 +123,8 @@ INSERT INTO joguines (joguinesId, taulaId, nom, pes, temps_fabrica, descripcio)
 INSERT INTO joguines (joguinesId, taulaId, nom, pes, temps_fabrica, descripcio)
 	VALUES (12, 7, 'Mitjons', 0.08, 2, 'Vermells, molt vermells');
 
+/*Comentaria para que si todo esta perfecto guardarlos sino hacer un rollback al anterior*/
+COMMIT;
 
 /*SELECT */
 SELECT * FROM taula;
@@ -121,7 +137,7 @@ UPDATE elf SET responsableId = 2 WHERE elfId IN (2, 3);
 UPDATE elf SET responsableId = 3 WHERE elfId IN (4, 5);
 UPDATE elf SET responsableId = 4 WHERE elfId IN (6, 7);
 UPDATE elf SET responsableId = 5 WHERE elfId IN (8, 9);
-
+COMMIT;
 
 -- Canvia la categoria de les taules 3,5 i 7 perquè siguin de categoria D.
 UPDATE taula SET categoria = 'D' WHERE taulaId IN (2, 5, 7);
@@ -135,19 +151,23 @@ UPDATE joguines SET taulaId = 5 WHERE joguinesId = 4;
 -- Modifica la joguina LegoWood perquè pesi 1.2, el temps de fabricació sigui de 4 i la descripció sigui “De fusta i inflamable”.
 UPDATE joguines SET pes = 1.2, temps_fabrica = 4, descripcio = 'De fusta i inflamable' WHERE joguinesId = 10;
 
+COMMIT;
+
 -- Elimina la joguina “mitjons”.
 SELECT joguinesId FROM joguines WHERE nom = 'Mitjons';
 DELETE FROM joguines WHERE joguinesId= 12;
+COMMIT;
 
 -- Elimina a l’elf “Narain”.
 SELECT elfId FROM elf WHERE nom = 'Narain';
 DELETE FROM elf WHERE elfId = 8;
+COMMIT;
 
 -- Elimina a l’elf “Gelbin”. Si no pots, modifica la foregin key de responsable per aplicar un “on delete set null”.
 -- > Torna a provar-ho i mira que ha passat amb els elfs que tenien a Gelbin de responsable.
 SELECT elfid FROM elf WHERE nom = 'Gelbin';
 DELETE FROM elf WHERE elfId = 1;
-
+COMMIT;
 
 -- Elimina la taula 7 de fabricació. Si no pots, modifica la foreign key de joguines a taules per aplicar un “on delete cascade”.
 -- > Torna a provar-ho i mira que ha passat amb la joguina “Samarreta”.
@@ -155,11 +175,12 @@ ALTER TABLE joguines DROP CONSTRAINT fk_id_taula_joguines;
 ALTER TABLE joguines ADD CONSTRAINT fk_id_taula_joguines FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE SET NULL;
 ALTER TABLE elf DROP CONSTRAINT fk_id_taula_elf;
 ALTER TABLE elf ADD CONSTRAINT fk_id_taula_elf FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE SET NULL;
-
-
 SELECT taulaId FROM taula WHERE codi = 'taula7';
 DELETE FROM taula WHERE taulaId = 7;
 
+COMMIT;
+
+/*SELECTS DE LAS TABLAS*/
 -- Llista d’elfs: nom, color preferit i categoria
 -- > Les columnes han de tenir el mateix nom que es demana a l’enunciat.
 SELECT nom, color_preferit, categoria FROM elf;
@@ -192,3 +213,4 @@ SELECT 'La taula ' || nom || ' mesura ' || dimensions || ' metres quadrats i es 
 
 -- Elfs de categoria A i C.
 SELECT * FROM elf WHERE categoria IN ('A', 'C');
+
