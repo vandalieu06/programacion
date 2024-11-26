@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "marca": "Toyota",
+    "año": 2023,
+    "precio": 25000.99,
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "marca": "Seat",
+    "año": 2022,
+    "precio": 24000,
+    "disponible": false
+  },
+  {
+    "id": 3,
+    "marca": "Ferrari",
+    "año": 2021,
+    "precio": 300000,
+    "disponible": true
+  }
+]

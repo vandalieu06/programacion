@@ -42,7 +42,7 @@ void añadirMinutos (int iDiasExercici[], int iDia, int iMinutos){
   iDiasExercici[iDia - 1] += iMinutos;
 }
 
-int calcularMinutosSemana(int iDiasEjercicio[]){
+int calcularMinutos(int iDiasEjercicio[]){
   int iTotal = 0;
   for (int i = 0; i < 7; i++) {
     iTotal = iTotal + iDiasEjercicio[i];
@@ -50,7 +50,7 @@ int calcularMinutosSemana(int iDiasEjercicio[]){
   return iTotal;
 }
 
-int buscarDiaEjerecicioSuperior (int iDiasEjercicio[]){
+int buscarDiaSuperior (int iDiasEjercicio[]){
   int iMax = iDiasEjercicio[0];
   int iPosicion = 0;
   for (int i = 0; i < 7; i++){
@@ -61,8 +61,8 @@ int buscarDiaEjerecicioSuperior (int iDiasEjercicio[]){
   }
   return iPosicion;
 }
-float calcularMediaEjercicio(int iDiasEjercicio[]){
-  int iSumaMinutos = calcularMinutosSemana(iDiasEjercicio);
+float calcularMedia(int iDiasEjercicio[]){
+  int iSumaMinutos = calcularMinutos(iDiasEjercicio);
   float iTotal = (float)iSumaMinutos / 7;
   return iTotal;
 }
@@ -89,15 +89,15 @@ int main(){
         }
         break;
       case 2:
-        int iExerciciTotal = calcularMinutosSemana(iDiasEjercicio);
+        int iExerciciTotal = calcularMinutos(iDiasEjercicio);
         printf("Los minutos que has hehco ejericico son: %dmin\n", iExerciciTotal);
         break;
       case 3:
-        int iDiaMasMinutos = buscarDiaEjerecicioSuperior(iDiasEjercicio);
+        int iDiaMasMinutos = buscarDiaSuperior(iDiasEjercicio);
         printf("El dia con mas ejercico ha sido %d con %d min\n", iDiaMasMinutos, iDiasEjercicio[iDiaMasMinutos]);
         break;
       case 4:
-        float iDiaMedia = calcularMediaEjercicio (iDiasEjercicio);
+        float iDiaMedia = calcularMedia (iDiasEjercicio);
         printf("La media entre los ejercicios es de %.2f min\n", iDiaMedia);
         break;
       case 5:
@@ -106,7 +106,7 @@ int main(){
       default:
         printf("Introduce una opcion correcta...\n");
     }
-
   }while(iOpcion != 5);
+
   return 0;
 }

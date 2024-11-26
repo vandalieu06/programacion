@@ -172,9 +172,9 @@ COMMIT;
 -- Elimina la taula 7 de fabricació. Si no pots, modifica la foreign key de joguines a taules per aplicar un “on delete cascade”.
 -- > Torna a provar-ho i mira que ha passat amb la joguina “Samarreta”.
 ALTER TABLE joguines DROP CONSTRAINT fk_id_taula_joguines;
-ALTER TABLE joguines ADD CONSTRAINT fk_id_taula_joguines FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE SET NULL;
+ALTER TABLE joguines ADD CONSTRAINT fk_id_taula_joguines FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE CASCADE;
 ALTER TABLE elf DROP CONSTRAINT fk_id_taula_elf;
-ALTER TABLE elf ADD CONSTRAINT fk_id_taula_elf FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE SET NULL;
+ALTER TABLE elf ADD CONSTRAINT fk_id_taula_elf FOREIGN KEY (taulaId) REFERENCES taula(taulaId) ON DELETE CASCADE;
 SELECT taulaId FROM taula WHERE codi = 'taula7';
 DELETE FROM taula WHERE taulaId = 7;
 
