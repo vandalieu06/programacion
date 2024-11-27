@@ -7,20 +7,24 @@
 */
 
 #include <stdio.h>
-void intercambier (int a, int b){
+void intercambierSinReferencia (int a, int b){
   int tmp = a;
   a = b;
   b = tmp;
-
-
+}
+void intercambiar(int *a, int *b){
+  int tmp = *a;
+  *a = *b;
+  *b = tmp;
 }
 
 int main (){
   int a = 5;
   int b = 6;
-  printf("a = %d, b = %d\n", a, b);
-  intercambier(a, b);
-  printf("a = %d, b = %d", a, b);
+  printf("Solucion 1: a = %d, b = %d\n", a, b);
+  //intercambier(a, b); - Sin referencia no cambia los valores
+  intercambiar(&a, &b);
+  printf("Solucion 2: a = %d, b = %d\n", a, b);
 
   return 0;
 }

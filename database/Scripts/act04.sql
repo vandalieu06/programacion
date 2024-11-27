@@ -116,8 +116,10 @@ INSERT INTO comanda (comandaId, stockId, dataComanda, quantitatSolicitada)
 UPDATE historial SET quantitatGenerada = quantitatGenerada + 20;
 SELECT * FROM stock WHERE tipusUnicorn = 'Unicorn Celestial';
 UPDATE stock SET quantitat = 51 WHERE stockID = 3;
+
 SELECT * FROM producte WHERE codi = 'P-004';
 UPDATE producte SET codi = 'P-016' WHERE producteId = 4;
+
 UPDATE producte SET preuUnitari = 25 WHERE producteId IN (1, 3);
 UPDATE producte SET preuUnitari = 20 WHERE producteId IN (2, 4);
 
@@ -125,26 +127,38 @@ UPDATE producte SET preuUnitari = 20 WHERE producteId IN (2, 4);
 -- Afegir la columna Descripcio a la taula Línia de Producció.
 ALTER TABLE historial ADD descripcio VARCHAR2(100);
 SELECT * FROM historial;
+
 -- Incrementar la longitud de la columna Codi a la taula.
 ALTER TABLE producte MODIFY codi VARCHAR2(20);
+
 -- Afegir una restricció perquè els codis de la taula Producte siguin únics.
 ALTER TABLE producte ADD CONSTRAINT uk_producte_codi UNIQUE(codi);
+
 -- Relacionar la taula Historial_Producció amb la taula Estoc_Unicorn mitjançant una clau forana.
 ALTER TABLE historial ADD stockId NUMBER;
 ALTER TABLE historial ADD CONSTRAINT pk_historial_stock_id FOREIGN KEY (stockId) REFERENCES stock(stockId) ON DELETE SET NULL;
+
 -- Afegir una restricció CHECK per garantir que la columna Quantitat a la taula Estoc_Unicorn sigui sempre positiva.
-ALTER TABLE stock ADD CONSTRAINT ck_stock_quantitat CHECK(quantitat > 0);
+ALTER TABLE stock ADD CONSTRAINT ck_stock_quantitat CHECK(quantitat >= 0); -- Cambio de >0 a >= 0, porque se tienen que permitir quedarte sin stock.
+
 -- Eliminar la columna Categoria de la taula Producte.
 ALTER TABLE producte DROP COLUMN categoria;
 SELECT * FROM producte;
+
 -- Renombrar la columna “Preu_unitari” de la taula Producte a “Preu”.
-ALTER TABLE producte RENAME COLUMN preuUnitari TO  preu;
+ALTER TABLE producte RENAME COLUMN preuUnitari TO preu;
+
 -- Afegir una columna a la taula Comanda_Unicorn amb un valor predeterminat que indiqui la data de creació.
-ALTER TABLE comanda ADD dataCreacio DATE DEFAULT '12-06-2022';
+ALTER TABLE comanda ADD dataCreacio DATE DEFAULT '12-06-2022'; 
+    -- Cambiar la fecha de '12-06-2022' a SYSDATE para que se ponga la fecha autmoticamente cuando se crea 
 SELECT * FROM comanda;
+
 -- Afegir una restricció perquè els codis de LINIES siguin obligatoris.
 ALTER TABLE linea ADD CONSTRAINT ck_linea_codi CHECK(codi IS NOT NULL);
+
 -- Afegir una restricció perquè el PREU de PRODUCTE hagi d’estar entre 0 y 50000.
-ALTER TABLE producte ADD CONSTRAINT ck_producte_preu CHECK(preu > 0 AND preu < 5000);
+ALTER TABLE producte ADD CONSTRAINT ck_producte_preu CHECK(preu >= 0 AND preu <= 50000); -- Alternativa : CHECK (preu BETWEEN 0 AND 50000)
+    -- Como antes cambiar > i < a >= i <= para ques se permitan los valores con los que comparamos y permita el 0 i el 50000.
+
 -- Afegir una restricció perquè l’estat de les LINIES només pugui ser “Operativa”, “En manteniment” o “En espera”.
 ALTER TABLE linea ADD CONSTRAINT ck_linea_estat CHECK(estat IN ('Operativa', 'En manteniment', 'En espera'));
