@@ -20,7 +20,7 @@ void mostrarMenu(){
   printf("-- Menu\n");
   printf("1. Crear Inventario\n");
   printf("2. Calcular total Producto\n");
-  printf("3. Calcular IVA (21%) de Producto\n");
+  printf("3. Calcular IVA 21 de Producto\n");
   printf("4. Calcular total de inventario con IVA\n");
   printf("5. Calcular Inventario sin IV\n");
   printf("6. Calcurat dto de un producto\n");
@@ -120,17 +120,19 @@ int main() {
         printf("El precio del producto con IVA es de: %.2f\n", iProductoIva);
         break;
       case 4:
+        printf("");
         float iInventarioTotalIva = cacluarTotalInventarioIva(producto, iProductos);
         printf("El precio del total de productos con IVA es de: %.2f\n", iInventarioTotalIva);
         break;
       case 5:
+        printf("");
         float iInventarioTotal = cacluarTotalInventario(producto, iProductos);
         printf("El precio del total de productos con sin IVA es de: %.2f\n", iInventarioTotal);
         break;
       case 6:
         printf("De que producto desea obtener el descuento: ");
         scanf("%d", &iProducto);
-        printf("Introduce el descuento: que desea aplicar (1 /%/ a 100%): ");
+        printf("Introduce el descuento: que desea aplicar (1 a 100): ");
         int iDescuento = 21;
         scanf("%d", &iDescuento);
         float iProdutoDescuento = calcularDescuentoProducto(producto, iProducto, iDescuento);
