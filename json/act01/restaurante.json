@@ -1,0 +1,40 @@
+{
+  "sopar": {
+    "taula": {
+      "_comensals": "4"
+    },
+    "plats": {
+      "plat": [
+        {
+          "nom": "Paella de marisc",
+          "preu": "20.00",
+          "ingredients": {
+            "ingredient": [
+              "Arròs",
+              "Marisc",
+              "All",
+              "Oli d'oliva"
+            ]
+          },
+          "_codi-plat": "P001"
+        },
+        {
+          "nom": "Crema catalana",
+          "preu": "6.00",
+          "ingredients": {
+            "ingredient": [
+              "Llet",
+              "Sucre",
+              "Ous",
+              "Canella"
+            ]
+          },
+          "_codi-plat": "P002"
+        }
+      ]
+    },
+    "total": "26.00",
+    "_id": "S001"
+  }
+}
+

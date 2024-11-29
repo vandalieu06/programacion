@@ -1,0 +1,4 @@
+-- 1. Connectar con SYSTEM
+-- ALTER USER HR ACCOUNT UNLOCK;
+-- ALTER USER HR IDENTIFIED BY 1234;
+-- 4. Crear NUEVA connexion con hr

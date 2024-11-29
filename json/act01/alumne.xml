@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row-0>
+    <nom>Juan</nom>
+    <cognoms>Lopez</cognoms>
+    <cognoms>Martinez</cognoms>
+    <edat>20</edat>
+    <estudiant>
+      <actiu>true</actiu>
+    </estudiant>
+  </row-0>
+  <row-1>
+    <nom>Maria</nom>
+    <cognoms>Garcia</cognoms>
+    <cognoms>Vellasco</cognoms>
+    <edat>21</edat>
+    <estudiant>
+      <actiu>false</actiu>
+    </estudiant>
+  </row-1>
+</root>

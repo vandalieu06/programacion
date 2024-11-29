@@ -1,0 +1,18 @@
+[
+  {
+    "nom": "Juan",
+    "cognoms": ["Lopez", "Martinez"],
+    "edat": 20,
+    "estudiant":{
+      "actiu": true
+    }
+  },
+  {
+    "nom": "Maria",
+    "cognoms": ["Garcia", "Vellasco"],
+    "edat": 21,
+    "estudiant":{
+      "actiu": false
+    }
+  }
+]

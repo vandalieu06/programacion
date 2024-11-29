@@ -1,0 +1,80 @@
+[
+  {
+    "nom": "Juan",
+    "cognoms": {
+      "cognom1": "Martinez",
+      "cognom2": "Lopez"
+    },
+    "data_neixamnet": "17-16-08",
+    "telefon": {
+      "principal": 666777888,
+      "secundari": 999888777
+    },
+    "direccio": {
+      "principal": "Carrer de Nadal 57 BIS",
+      "secundaria": "Carer de Sant Ferran 125"
+    },
+    "email": "juan.martinez@gmail.com",
+    "actiu": true,
+    "recurrent": false,
+    "compres":{
+      "nombre": 2,
+      "historial": {
+        "compra1": ["CPR-03001", "Nombre Producto", 5, 99.99, "$"], 
+        "compra2": ["CPR-00102", "Nombre Producto", 1, 60.99, "€"] 
+      }
+    }
+  },
+  {
+    "nom": "Marc",
+    "cognoms": {
+      "cognom1": "García",
+      "cognom2": "López"
+    },
+    "data_neixamnet": "25-12-88",
+    "telefon": {
+      "principal": 622334455,
+      "secundari": 633445566
+    },
+    "direccio": {
+      "principal": "Passeig de Gràcia 123",
+      "secundaria": "Carrer Gran Via 345"
+    },
+    "email": "marc.garcia@gmail.com",
+    "actiu": true,
+    "recurrent": false,
+    "compres": {
+      "nombre": 1,
+      "historial": {
+        "compra1": ["CPR-01123", "Producto E", 1, 89.90, "€"]
+      }
+    }
+  },
+  {
+    "nom": "Laura",
+    "cognoms": {
+      "cognom1": "Ruiz",
+      "cognom2": "Martínez"
+    },
+    "data_neixamnet": "10-03-95",
+    "telefon": {
+      "principal": 611223344,
+      "secundari": null
+    },
+    "direccio": {
+      "principal": "Carrer Nou de la Rambla 12",
+      "secundaria": null
+    },
+    "email": "laura.ruiz@gmail.com",
+    "actiu": true,
+    "recurrent": true,
+    "compres": {
+      "nombre": 3,
+      "historial": {
+        "compra1": ["CPR-00987", "Producto F", 1, 50.50, "$"],
+        "compra2": ["CPR-02013", "Producto G", 4, 20.00, "€"],
+        "compra3": ["CPR-04567", "Producto H", 2, 75.75, "$"]
+      }
+    }
+  }
+]
