@@ -144,7 +144,7 @@ int main(){
     iTurnos--;
 
     if(iTurnos == 0){
-      printf("Se han acabado los turnos, has perdidio!\n");
+      printf("Se hanfdj acabado los turnos, has perdidio!\n");
       break;
     }
 
