@@ -224,6 +224,7 @@ void iniciarProgramma (char cMatriz[6][6], int iNivelDificultad, int *iSaliendo)
 }
 
 int main(){
+  printf("Comenzando programma...\n");
   //Variables 
   int iOpcion = 1, iNivelDificultad = 1, iSaliendo = 11;
   char cMatriz[6][6];
