@@ -1,0 +1,3 @@
+Name: Aglaea
+The memosprite Garmentmaker has an initial SPD of 40 and a Max HP equal
+to 66% of Aglaea's Max HP plus 720.[...]

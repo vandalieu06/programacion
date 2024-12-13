@@ -92,3 +92,21 @@ WHERE first_name LIKE '%a%' OR first_name LIKE '%A%';
 SELECT first_name 
 FROM EMPLOYEES 
 WHERE UPPER(first_name) LIKE '%A%';
+
+SELECT first_name, email, SUBSTR(email, 1, 3) FROM employees; -- Obtener de desde la letra 1 3 caracteres de email.
+SELECT first_name, email, SUBSTR(email, 3, 2) FROM employees;
+SELECT first_name, email, SUBSTR(email, -1, 1) FROM employees; -- Ultima letra
+SELECT first_name, email, SUBSTR(email, LENGTH(email), 1) FROM employees;
+
+--LPAD O RPAD: rellena por la derecha o la izquierda
+-- La palabra, hasta llegar a la longitud y con el 
+-- caracter que le digas
+-- LPAD(columna, longitus, rellena)
+SELECT salary, LPAD(salary, 8, 0) AS "SALARY LONG 8" FROM employees;
+SELECT salary, RPAD(salary, 8, 'x') AS "SALARY LONG 8" FROM employees;
+
+
+--Funciones numericas
+-- ROUND, MOD, MOD: modulo base x
+
+SELECT ROUND(5.5), TRUNC(4.999999),MOD(784931984, 5) FROM dual;

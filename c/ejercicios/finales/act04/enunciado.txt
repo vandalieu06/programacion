@@ -1,0 +1,24 @@
+Exercici 1: Gestió de biblioteca
+Crea un programa en C que gestioni un sistema senzill de biblioteca utilitzant fitxers. 
+El programa permetrà les següents funcionalitats:
+  1. Afegir un llibre nou al sistema (títol, autor, any de publicació i codi ISBN). Els llibres es guardaran en un fitxer anomenat biblioteca.txt.
+  2. Mostrar tots els llibres disponibles llegint les dades del fitxer i mostrant-les a la pantalla.
+  3. Cercar un llibre per codi ISBN. Si el llibre existeix, es mostraran les dades. Si no existeix, es mostrarà un missatge indicant-ho. (OPCIONAL)
+  4. Sortir del programa.
+
+Requisits:
+  • Utilitza estructures per representar els llibres.
+  • Utilitza fitxers per guardar i carregar les dades.
+  • Fes servir funcions per a cada funcionalitat:
+    o Afegir un llibre.
+    o Mostrar els llibres.
+    o Cercar un llibre. (OPCIONAL)
+  • Utilitza bucles i condicions per gestionar el menú.
+
+Criteris d’Avaluació (10 punts + 2 punts opcionals):
+  • Creació de la estructura (1.5 punt).
+  • Funció afegir (3 punts).
+  • Funció mostrar (3 punts).
+  • Funció cerca (2 punts Opcionals).
+  • Claredat del codi i ús correcte de funcions (1.5 punts).
+  • Documentació del codi (1 punt).
