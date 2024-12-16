@@ -118,72 +118,96 @@ void listBooks(char filePath[]) {
   fclose(file); //Cerramos el arxivo
 }
 
+//Funcion que se encargar de buscar un libro a traves del isbn obtenido por el usuario pasado como parametro, como resultado muestra la linea a la que pertenece la ISBN
 void searchBook(char filePath[], char cUserISBN[]){
   FILE *file = readFile(filePath);
+
   if (file == NULL){
-    printf("Error: not search books...\n");
+    printf("Error: not search book...\n");
     fclose(file);
     return;
   }
 
-  int iVoucher = 1;
-  char context[100];
-  int iContextLength;
-  char sISBN[10];
+  //Variables
+  int iVoucher = 1; //Variable encargada de mantener el ciclo 
+  char context[100]; //Guarda la linea del docmuneto actual
+  int iContextLength; //Guarda el tamaño de context
+  char sISBN[10]; //GUardamos la isbn de la linea que estamos revisando
 
+  //COmienza el ciclo encarggado de buscar linea por linea i comprobar si el isbn introducido por el usuario es igual a alguno de los 
+  //que hay almacenado en el document (.txt).
   do{
+    //Si ya no hay mas linea, o sea que nos da NULL paramos el ciclo.
     if (fgets(context, sizeof(context), file) == NULL){
-      //printf("Error: not line in context\n");
       iVoucher = 0;
+      printf("Book not found!\n");
       break;
     }
-    // Obtenemos el tamaño de la oracion(.txt) [1...100] y le restamos 1 para ir caracter en caracter en la array [0...99]
+
+    // Obtenemos el tamaño de la linea(.txt) [1...100]
     iContextLength = strlen(context);
 
+    //Hay que tener en cuenta que el ultimo caracter es un "\n" al ser obtenido por fgets() excepto la ultima linea que no lo incluye,
+    //por eso hay que comprovar si el ultimo caracter es igual a "\n" lo defina como "\0" para que mas adelante a la hora de comprovar con 
+    //strcmp() lo detecte ja que este si no detecta el final de un string no lo puede llegar a tener en cuenta y haver fallos inesperados.
     if (context[iContextLength - 1] == '\n') {
       context[iContextLength - 1] = '\0';
-      iContextLength--; // Actualizamos la longitud
+      iContextLength--; // Actualizamos la longitud para que ignore "\0"
     }
+    //NOTA: Para hacer esta parte he necceitado la ayuda de chatgpt ja que no tenia en cuneta que fgets() añadia a todos un "\n" i al ultimo no, 
+    //al prinicpio lo que hacia era restar al iContextLength (-1) para que no tenga en cuenta el final.
 
+
+    //Recorremo la oracion de atra hacia delante 9 veces ja que el isbn correponde a 9 caracteres
     for (int i = 1; i < 10; i++){
       sISBN[9 - i] = context[iContextLength - i];  
     }
-    //Añadimos \0 para que la palabra tenga final
+
+    //Añadimos \0 para que el isbn de la linea tenga un final
     sISBN[9] = '\0';
-  
-    printf("%s-%s\n", sISBN, cUserISBN);
+
+    // Ahoara comprovamos si el sISBn y el cUserISBN son iguales mediante el metodo strcmp() que no devolvera 0 si son iguales.
+    // En caso que sean iguales nos imprimra la linea i pornda el comprovoante en 0 para que salga del ciclo
     if (strcmp(sISBN, cUserISBN) == 0){
-      //printf("The ISBN is equal!\n");
       printf("%s\n", context);
       iVoucher = 0;
     }
   } while(iVoucher == 1);
-  fclose(file);
+
+  fclose(file);// Cerramos el archivo.
 }
 
 int main() {
   // Configuracion inciial del path  biblioteca.txt i la structura de los libros
   struct Book book;
   char filePath[20] = "biblioteca.txt";
-  int iOption = 1; 
-  char cUserISBN[10];
+  int iOption;
+  char cUserISBN[10]; //variable encarggada de guardar el ISBN del usuario de 9 caracters + "\0" = 10 posiciones de char.
+  
   //Incio programma
   do {
+    //Mostramo menu y pedimo opcion
     menuInicial();
     obtainOption(&iOption);
+
+    //Switch que se encarga de ejecutar la opcion escogida
     switch (iOption) {
       case 1:
+        //Obtenemo dlso datos del libro a añadir y añadimo el libro
         obtainDataUser(&book);
         addBook(filePath, &book);
         break;  
       case 2:
+      //Listamos todos lo libros del documento
         listBooks(filePath);
         break;  
       case 3:
+        //Obteneom el ISBN del usuario i buscamos el libro.
         obtainIsbnUser(cUserISBN);
         searchBook(filePath, cUserISBN);
         break;
       case 4:
+        //Hacemo un break para parar el programma
         printf("Saliendo...\n");
         break;
     }
