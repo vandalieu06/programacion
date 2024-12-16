@@ -104,7 +104,7 @@ void searchBook(char filePath[], char cUserISBN[]){
   int iVoucher = 1;
   char context[100];
   int iContextLength;
-  char sISBN[11];
+  char sISBN[10];
 
   do{
     if (fgets(context, sizeof(context), file) == NULL){
@@ -115,21 +115,22 @@ void searchBook(char filePath[], char cUserISBN[]){
     // Obtenemos el tamaño de la oracion(.txt) [1...100] y le restamos 1 para ir caracter en caracter en la array [0...99]
     iContextLength = strlen(context) - 1;    
 
-    for (int i = 1; i <= 10; i++){
-      sISBN[10 - i] = context[iContextLength - i];  
+    for (int i = 1; i < 10; i++){
+      sISBN[9 - i] = context[iContextLength - i];  
     }
-    sISBN[10] = '\0';
-     
-  } while(iVoucher == 1);
+    sISBN[9] = '\0';
   
-  if (strcmp(sISBN, cUserISBN) == 0){
-    printf("The ISBN is equal!\n");
-  } else {
-    printf("The ISBN not equal!\n");
-    printf("%s, %s", sISBN, cUserISBN);
-  }
- 
-  printf("Final de busqueda...\n\n");
+    if (strcmp(sISBN, cUserISBN) == 0){
+      //printf("The ISBN is equal!\n");
+      //printf("%s-%s\n", sISBN, cUserISBN);
+      printf("%s\n", context);
+      iVoucher = 0;
+    } else{
+      printf("This book is doesn't exits in local library!.\n\n");
+      iVoucher = 0;
+    }
+
+  } while(iVoucher == 1);
 }
 
 int main() {
