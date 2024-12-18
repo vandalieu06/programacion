@@ -24,7 +24,7 @@ int main (){
   printf("Figura \n");
   printf("---------\n");
   for (int i = 0; i < iColumna; i++){
-    for(int i2 = 0; i2 < iFila; i2++){
+    for(int j = 0; j < iFila; j++){
       printf("*");
     }
     printf("\n");

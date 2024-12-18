@@ -5,7 +5,7 @@
   - Crear un array con el resultado de la multiplicacion de cada posicion
   Array1 --> 1 2 3 4
   Array2 --> 1 2 3 4
-  Array1 --> 1 4 9 16
+  ArrayTotal --> 1 4 9 16
 
 */
 

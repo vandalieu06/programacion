@@ -2,7 +2,6 @@
   Pedir dos nuemros al usuario:
   Mostrar 5 y 3
   5 + 5 + 5 = 15
-
 */
 
 #include <stdio.h>

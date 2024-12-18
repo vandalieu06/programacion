@@ -10,7 +10,7 @@
 void NumRandom(){
   srand((unsigned)time(NULL));
   printf("Numero Aleatorio: %d\n", rand() % (100 + 1));
-  //rand = 4892749807209309; 100 = 09; +1 = 1 - 100;
+  //rand = 4892749807209309; 100 => 99 + 1 = 1 a 100;
 }
 
 void NumsRandom(){
@@ -36,6 +36,7 @@ void NumsRandom(){
 
 int main() {
   NumsRandom();
+
   NumRandom();
 
   return 0;

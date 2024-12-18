@@ -19,8 +19,6 @@ int main (){
   printf("Introduce el dinero dado por el cliente: ");
   scanf("%f", &iRecibo);
 
-
-
   float iCanvio = iRecibo - iProducto;
   if (iCanvio < 0 ) {
     printf("Te falta: %.2f € \n", fabs(iCanvio) );  

@@ -19,7 +19,7 @@ int main(){
     if (iNum % 2 == 0){
       iPromedio += iNum;
       iLimitador++;
-    }else{
+    } else{
       iLimitador = 0;
       int iReal = i - 1;
       printf("> El valor pormedio de los numeros introducidoes es: %.2f\n", iPromedio / iReal);
@@ -27,7 +27,5 @@ int main(){
     }
   }
   
-  
-
   return 0;
 }

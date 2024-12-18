@@ -1,7 +1,7 @@
 /*
   Progarma que pida 5 numeros pares al usuario,
   si no es par tiene que seguir pidiendo.
-  AL finalizar mostrar los numeros pares introducidos
+  Al finalizar mostrar los numeros pares introducidos
 */
 
 #include <stdio.h>

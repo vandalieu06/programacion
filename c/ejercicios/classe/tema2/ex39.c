@@ -1,5 +1,5 @@
 /*
-  Crear ua  matriz del 10 x 10 con numeros aleatorios
+  Crear una  matriz del 10 x 10 con numeros aleatorios
   - Pedir al usuario un numero del 0 al 9
   - Sumar todos los numeros de la fila seleccionada
   - Pedir al usuario otro numero entre el 0 y el 9

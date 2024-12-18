@@ -16,7 +16,6 @@ int main(){
 
   int iNum, iOpcion;
 
-
   printf("Opciones\n");
   printf("1 - Ascendente\n");
   printf("2 - Descendente\n");
@@ -44,14 +43,6 @@ int main(){
       }
       printf("\n");
     }
-
-  return 0;
-  }
-
-
-
-
-
 
   return 0;
 }

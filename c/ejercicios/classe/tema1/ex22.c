@@ -12,11 +12,11 @@ int main() {
   do{
     if (i == 0){
       printf("> Introduce un numero del 1 al 10: ");
+      i++;
     } else{
       printf("> Vuelve a introducir un numero del 1 al 10: ");
     }
     scanf("%d", &iNum);
-    i++;
   }while(iNum < 0 || iNum > 10);
 
   printf("En %d intentos has logrado introducir el numero correcto: %d\n", i - 1, iNum);

@@ -28,7 +28,7 @@ int main () {
   for(int i = 0; i < 10; i++){
     if (iNum == iNumeros[i]){
       iBoolean = 1; // Declaramos que hemos encontrado el nuemro
-      iPosicionI[i] = i + 1; //Assignamos en que posicion sin el 0 se ha encontrado, aj que yo represento el 0 como 1
+      iPosicionI[i] = i + 1; //Assignamos en que posicion sin el 0 se ha encontrado, aqui yo represento el 0 como 1
       iRecuento++; // Sumamos cuantas veces se ha encontrado el numero
     }
   }

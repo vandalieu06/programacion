@@ -1,6 +1,5 @@
 /*
-  Pedir un numero al usuario
-  y hacer su factorial
+  Pedir un numero al usuario y hacer su factorial.
 */
 
 #include <stdio.h>
