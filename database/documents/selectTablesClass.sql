@@ -110,3 +110,7 @@ SELECT salary, RPAD(salary, 8, 'x') AS "SALARY LONG 8" FROM employees;
 -- ROUND, MOD, MOD: modulo base x
 
 SELECT ROUND(5.5), TRUNC(4.999999),MOD(784931984, 5) FROM dual;
+--SYSDATE
+
+SELECT TO_CHAR(SYSDATE, 'DD "de" MOTGH "del" YYYY') FROM DUAL;
+--DECODE y CASE en powerpoint 4
