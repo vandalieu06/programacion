@@ -37,3 +37,31 @@ class Sandbox extends StatelessWidget {
     );
   }
 }
+
+class SandboxRow extends StatelessWidget {
+  const SandboxRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+            height: 120.0,
+            color: Colors.amber,
+            child: Text("Nota 1", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
+          ),
+          Container(
+            height: 140.0,
+            color: Colors.purpleAccent,
+            child: Text("Nota 2", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
+          ),
+          Container(
+            height: 160.0,
+            color: Colors.pinkAccent,
+            child: Text("Nota 3", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
+          ),
+      ],
+    );
+  }
+}

@@ -1,4 +1,4 @@
---PW 5 RESUMEN Y AGRUPACIONç
+--PW 5 RESUMEN Y 
 -- Agrupar una sola columna con FUNCIONEs
 -- MAX, MIN, AVG, SUM, COUNT
 SELECT MAX(salary) FROM EMPLOYEES; --Coge todos los salario y devuelve la mas grande
@@ -22,7 +22,11 @@ FROM employees;
 -- COUNT, AVG, MIN, MAX, SUM, 
 SELECT * FROM employees;
 SELECT department_id, AVG(salary) FROM employees; -- Esto peta porque departamentos no esta agrupados
-SELECT department_id, AVG(salary), MAX(salary) FROM employees WHERE department_id IS NOT NULL GROUP BY department_id;
+
+SELECT department_id, AVG(salary), MAX(salary) 
+FROM employees 
+WHERE department_id IS NOT NULL 
+GROUP BY department_id;
 
 -- Cuantos departamento hay en HR
 SELECT COUNT(DEPARTMENT_ID) FROM DEPARTMENTS;
@@ -31,9 +35,10 @@ SELECT COUNT(MANAGER_ID) FROM EMPLOYEES;
 SELECT MANAGER_ID, EMPLOYEE_ID FROM EMPLOYEES;
 
 -- CLASE 03 (19/12/2024)
-SELECT last_name, AVG(Salary) FROM employees GROUP BY LAST_NAME;
+SELECT last_name, AVG(Salary) 
+FROM employees 
+GROUP BY LAST_NAME;
 
-SELECT * FROM LOCATIONS;
 SELECT COUNTRY_ID, COUNT(LOCATION_ID)  
 FROM LOCATIONS 
 GROUP BY COUNTRY_ID 
@@ -53,16 +58,17 @@ WHERE DEPARTMENT_ID IS NOT NULL
 GROUP BY DEPARTMENT_ID
 ORDER BY 1 DESC;
 
--- Muestra lso apellido de los empleados que se repiten
---HAVING PERMITE AÑADIR CONDICIONES A UNA QUERY QUE IMPLIQUE EVALUAR FUNCIONES DE RESUMEN/AGRUPACIÓN
---WHERE --> SIN FUNCIONES DE RESUMEN
+-- Muestra los apellido de los empleados que se repiten
+--NOTA: HAVING PERMITE AÑADIR CONDICIONES A UNA QUERY QUE IMPLIQUE EVALUAR FUNCIONES DE RESUMEN/AGRUPACIÓN
+--      WHERE --> SIN FUNCIONES DE RESUMEN
+
 SELECT LAST_NAME, COUNT(EMPLOYEE_ID) AS REPETIDOS
 FROM EMPLOYEES
 HAVING COUNT(EMPLOYEE_ID) > 1
 GROUP BY LAST_NAME
-ORDER BY LAST_NAME;
+ORDER BY 1;
 
---EJeplo Tampa 2 : Muetsra los nombres que se repitan y que no empiexen por J
+--Ejemplo Trampa 2: Muestra los nombres que se repitan y que no empiexen por J
 SELECT FIRST_NAME, COUNT(EMPLOYEE_ID)
 FROM EMPLOYEES
 WHERE FIRST_NAME NOT LIKE 'J%'
@@ -97,9 +103,10 @@ SELECT
   man.FIRST_NAME AS "Nombre Jefe",
   man.LAST_NAME
 FROM EMPLOYEES emp
-  JOIN EMPLOYEES man ON (EMP.MANAGER_ID = man.EMPLOYEE_ID);
+  JOIN EMPLOYEES man ON (EMP.MANAGER_ID = man.EMPLOYEE_ID)
+WHERE man.FIRST_NAME IS NOT NULL;
 
---Mostrar todos los empleados includo losque no estan assignados
+--Mostrar todos los empleados includo los que no estan assignados
 SELECT 
   emp.FIRST_NAME AS "Nombre Empleado",
   emp.LAST_NAME,
