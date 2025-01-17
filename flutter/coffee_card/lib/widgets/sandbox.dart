@@ -11,7 +11,7 @@ class Sandbox extends StatelessWidget {
         backgroundColor: Colors.green,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
@@ -34,6 +34,12 @@ class Sandbox extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+        },
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -44,7 +50,8 @@ class SandboxRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
             height: 120.0,
@@ -52,12 +59,12 @@ class SandboxRow extends StatelessWidget {
             child: Text("Nota 1", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
           ),
           Container(
-            height: 140.0,
+            height: 160.0,
             color: Colors.purpleAccent,
             child: Text("Nota 2", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
           ),
           Container(
-            height: 160.0,
+            height: 200.0,
             color: Colors.pinkAccent,
             child: Text("Nota 3", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
           ),

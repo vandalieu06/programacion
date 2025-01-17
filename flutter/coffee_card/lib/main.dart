@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 //import 'package:coffee_card/home.dart';
-import 'package:coffee_card/widgets/sandbox.dart';
+//import 'package:coffee_card/widgets/sandbox.dart';
+import 'package:coffee_card/widgets/cofeee_pref.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false, //Eliminar banner del debug mode
-    home: SandboxRow(),
+    //debugShowMaterialGrid: true,
+    home: CoffeePrefs(),
   ));
 }
 
