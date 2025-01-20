@@ -9,15 +9,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  final _controller = TextEditingController();
+
   final List toDoList = [
     ['Learn Flutter', false],
     ['Drink Cofeee', false],
     ['Code With Freelance', true],
   ];
 
-  void checkBoxChanged(int index){
-    setState((){
-      toDoList[index][1] = !toDoList[index][1]; 
+  void checkBoxChanged(int index) {
+    setState(() {
+      toDoList[index][1] = !toDoList[index][1];
+    });
+  }
+
+  void saveNewTask(){
+    setState(() {
+      toDoList.add([_controller.text, false]);
     });
   }
 
@@ -42,6 +51,35 @@ class _MyHomePageState extends State<MyHomePage> {
               onChanged: (value) => checkBoxChanged(index),
             );
           }),
+      floatingActionButton: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  hintText: "Add new todo item",
+                  filled: true,
+                  fillColor: Colors.deepPurple[200],
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.deepPurple),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.deepPurple),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          FloatingActionButton(
+            onPressed: saveNewTask,
+            child: const Icon(Icons.add),
+          ),
+        ],
+      ),
     );
   }
 }
