@@ -7,13 +7,14 @@ class TodoList extends StatelessWidget {
     required this.taskName,
     required this.taskStatus,
     required this.onChanged,
-    this.deleteContext,
+    required this.deleteContext,
   });
 
   final String taskName;
   final bool taskStatus;
   final Function(bool?)? onChanged;
   final Function(BuildContext)? deleteContext;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,6 +26,9 @@ class TodoList extends StatelessWidget {
             SlidableAction(
               onPressed: deleteContext, 
               icon: Icons.delete,
+              borderRadius: BorderRadius.circular(4.0),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.white,
             ),
           ]
         ),
