@@ -1,4 +1,4 @@
-const db = require('../config/database');
+const db = require('../config/database.js');
 
 /* NOTAS
   P- arametros db.run(): 
@@ -12,29 +12,33 @@ const db = require('../config/database');
 
 */
 
-const Book = {
-  readAllBooks: (callback) => {
+class Book {
+  static readAllBooks (callback){
     const sql = 'SELECT * FROM mangas';
     db.all(sql, [], callback);
-  },
-  readIdBook: (id, callback) => {
+  }
+
+  static readIdBook (id, callback) {
     const sql = 'SELECT * FROM mangas WHERE id_manga = ?';
     db.get(sql, [id], callback);
-  },
-  createBook: (title, description, num_chapters, callback) => {
-    const sql = 'INSERT INTO mangas (title, description, num_chapters) VALUES (?, ?, ?, ?)';
+  }
+
+  static createBook (title, description, num_chapters, callback) {
+    const sql = 'INSERT INTO mangas (title, description, num_chapters) VALUES (?, ?, ?)';
     db.run(sql, [title, description, num_chapters], function (err){
       callback(err, {id: this.lastID})
     })
-  },
-  updateBook: (id, title, description, num_chapters, callback) => {
-    const sql = 'UPDATE manga SET title = ?, description = ?, num_chapters = ? WHERE id_manga = ?'; 
+  }
+
+  static updateBook (id, title, description, num_chapters, callback) {
+    const sql = 'UPDATE mangas SET title = ?, description = ?, num_chapters = ? WHERE id_manga = ?'; 
     db.run(sql, [title, description, num_chapters, id], callback);
-  },
-  deleteBook: (id_manga, callback) => {
-    const sql = 'DELETE FROM manga WHERE id_manga = ?';
+  }
+
+  static deleteBook (id_manga, callback) {
+    const sql = 'DELETE FROM mangas WHERE id_manga = ?';
     db.run(sql, id_manga, callback); 
-  },
+  }
 };
 
 module.exports = Book;
