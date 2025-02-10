@@ -14,14 +14,22 @@ const createBook = (title, description, num_chapters, callbalck) => {
 }
 
 //READ
+// all(): obtiene todos los elementos de las columnas
+// get(): obtiene una sola fila, normalmente a partir de la id de esta
 const readBooks = (callback) => {
   const sql = 'SELECT * FROM manga';
   db.all(sql, [], callback);
 }
 
+const readBook = (id_manga, callback) => {
+  const sql = 'SELECT * FROM manga WHERE id_manga = ?'
+  db.get(sql, id_manga, callback);
+}
+
+
 //UPDATE
-const updateBook = (title, description, num_chapters, callback) => {
-  const sql = 'UPDATE manga SET title = ?, description = ?, numChapters = ? WHERE id_manga = ?';
+const updateBook = (id_manga, title, description, num_chapters, callback) => {
+  const sql = 'UPDATE manga SET title = ?, description = ?, num_chapters = ? WHERE id_manga = ?';
   db.run(sql, [title, description, num_chapters, id_manga], callback)
 }
 
@@ -32,4 +40,4 @@ const deleteBook = (id_manga, callback) => {
 }
 
 //Exports
-module.exports = {readBooks, createBook, updateBook, deleteBook};
+module.exports = {readBooks, readBook, createBook, updateBook, deleteBook};
