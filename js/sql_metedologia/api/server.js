@@ -11,6 +11,7 @@ app.listen(port, (err) => {
 
 //Permite que Express analice automáticamente el cuerpo (body) de las solicitudes HTTP que llegan en formato JSON, basado en body-parser.
 app.use(express.json());
+
 //Midwelere para que todos los archivos en donde se encuentra main.js sean accecibles para todos 
 app.use(express.static(__dirname + '../../'));
 

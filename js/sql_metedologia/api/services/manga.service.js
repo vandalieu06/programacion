@@ -1,6 +1,6 @@
-const Book = require('../models/manga.model.js')
-
-class BookController {
+const mangaModel = require('../models/manga.model.js'); 
+  
+class BookService {
   static getBooks (req, res) {
     Book.readAllBooks((err, rows) => {
       if (err) return res.status(500).send(err.message);
@@ -39,4 +39,4 @@ class BookController {
   }
 }
 
-module.exports = BookController;
+module.exports = BookService;
