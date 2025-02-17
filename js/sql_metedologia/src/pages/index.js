@@ -2,11 +2,12 @@
 
 const insertElements = async () => {
   try{
-    const response = await fetch('/books');
+    const response = await fetch('/api/books');
     const data = await response.json();
-    console.log(data)
+    
     //Imagen por defecto, mas adelante añadir atributo a la bese de datos con la imagenes correpondientes
-    const imgUrl = 'https://images.pexels.com/photos/433989/pexels-photo-433989.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+    //Como estamos en el servidor ya podemos utilizar rutas estaticas sin ../..
+    const imgUrl = './src/assets/girl_image.jpg';
   
     for(let i = 0; i < data.length; i++){    
       //Funcions

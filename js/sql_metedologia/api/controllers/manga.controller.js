@@ -1,41 +1,51 @@
-const Book = require('../models/manga.model.js')
+const BookService = require('../services/manga.service.js');
 
 class BookController {
-  static getBooks (req, res) {
-    Book.readAllBooks((err, rows) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(200).json(rows);
-    });
+  static async getBooks (req, res) {
+    try {
+      const response = await BookService.getBooks();
+      res.status(200).json(response);//rows
+    } catch (err) {
+      res.status(500).send(err);
+    }
   }
 
-  static getIdBook (req, res) {
-    readBook(req.params.id, (err, row) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(200).json(row);
-    });
+  static async getIdBook (req, res) {
+    try {
+      const response = await BookService.getIdBook(req.params.id);
+      res.status(200).json(response);//row
+    } catch (err) {
+      res.status(500).send(err);
+    }
   }
 
-  static createBook (req, res) {
-    const {title, description, numChapters} = req.body;
-    createBook(title, description, numChapters, (err, data) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(201).send(`Item added ID : ${data.id}`)
-    });
+  static async createBook (req, res) {
+    try {
+      const {title, description, num_chapters} = req.body;
+      const response = await BookService.createBook(title, description, num_chapters);
+      res.status(201).json(response);
+    } catch (err) {
+      res.status(500).send(err);
+    }
   }
 
-  static updateBook (req, res) {
-    const {title, description, numChapters} = req.body;
-    updateBook(req.params.id, title, description, numChapters, (err) => {
-      if (err) return res.status(500).send(err);
-      res.status(200).send(`Item is updated`);
-    })
+  static async updateBook (req, res) {
+    try{
+      const {title, description, num_chapters} = req.body;
+      const response = await BookService.updateBook(req.params.id, title, description, num_chapters); 
+      res.status(201).send(response);
+    } catch(err){
+      res.status(500).send(err);
+    }
   }
 
-  static deleteBook (req, res) {
-    deleteBook(req.params.id, (err)=>{
-      if(err) return res.status(500).send(err);
-      res.status(200).send(`Item ${req.params.id} is deleted`);
-    })
+  static async deleteBook (req, res) {
+    try {
+      const response = await BookService.deleteBook(req.params.id);
+      send.status(200).send(response);
+    } catch (err) {
+      res.status(500).send(err)
+    }    
   }
 }
 

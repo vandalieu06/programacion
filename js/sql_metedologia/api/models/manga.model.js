@@ -12,33 +12,33 @@ const db = require('../config/database.js');
 
 */
 
-class Book {
+class BookModel {
   static readAllBooks (callback){
-    const sql = 'SELECT * FROM mangas';
+    const sql = 'SELECT * FROM manga LIMIT 10';
     db.all(sql, [], callback);
   }
 
   static readIdBook (id, callback) {
-    const sql = 'SELECT * FROM mangas WHERE id_manga = ?';
-    db.get(sql, [id], callback);
+    const sql = 'SELECT * FROM manga WHERE id_manga = ?';
+    db.get(sql, id, callback);
   }
 
   static createBook (title, description, num_chapters, callback) {
-    const sql = 'INSERT INTO mangas (title, description, num_chapters) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO manga (title, description, num_chapters) VALUES (?, ?, ?)';
     db.run(sql, [title, description, num_chapters], function (err){
       callback(err, {id: this.lastID})
     })
   }
 
   static updateBook (id, title, description, num_chapters, callback) {
-    const sql = 'UPDATE mangas SET title = ?, description = ?, num_chapters = ? WHERE id_manga = ?'; 
+    const sql = 'UPDATE manga SET title = ?, description = ?, num_chapters = ? WHERE id_manga = ?'; 
     db.run(sql, [title, description, num_chapters, id], callback);
   }
 
   static deleteBook (id_manga, callback) {
-    const sql = 'DELETE FROM mangas WHERE id_manga = ?';
+    const sql = 'DELETE FROM manga WHERE id_manga = ?';
     db.run(sql, id_manga, callback); 
   }
 };
 
-module.exports = Book;
+module.exports = BookModel;

@@ -1,0 +1,1 @@
+console.log('Index.js -  Este archivo es temporal ja que de momento no renderiza nada.')

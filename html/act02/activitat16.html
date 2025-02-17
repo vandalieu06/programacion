@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activitat 15 - Jhonny Claure</title>
+  <style>
+    #link_one{
+      transition: 200ms all;
+    }
+    #link_one:hover{
+      background-color: rgba(137, 43, 226, 0.7) !important;
+    }
+
+    th{
+      background-color: beige;
+    }
+    
+    td, th{
+      margin: 20px;
+      border-radius: 4px;
+      border: 2px black solid;
+      padding: 8px 16px;
+      text-align: center;
+    }
+    .audio__container{
+      padding: 30px 0;      
+      display: flex;
+      flex-direction: column;
+    }
+    iframe{
+      margin-top: 20px;
+      padding: 20px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body style="background-color: azure; width: 1200px; margin: 0 auto;">
+  <div>
+    <h1>Mi segunda web con tematicas</h1>
+    <h2>Tematica futbol</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi tempora ex hic earum sed non odit beatae nam vero molestias aut illum, quae excepturi exercitationem dolore autem, et a ea? Repudiandae ipsa sunt nihil quis quo hic quibusdam laborum animi! Quisquam enim natus exercitationem consequatur culpa. Odio ducimus impedit pariatur harum error vel veritatis incidunt, facere voluptates cumque labore iure nulla animi suscipit consequatur quaerat autem culpa, quae tenetur necessitatibus doloremque exercitationem unde! Placeat, eos recusandae fugiat nihil iusto id rerum assumenda? Impedit, sed molestiae sapiente minima officia voluptatibus numquam nulla quas ratione soluta ipsa vitae vero similique voluptate earum.</p>
+    <a href="https://jviladoms.cat/ca" id="link_one" style="border-radius: 8px; padding: 8px 20px; background-color: rgba(137, 43, 226, 0.4); text-decoration: none; color: white; font-weight: 400;">Link a Escuela</a>
+  </div>
+  <div>
+    <h3 style="text-align: center; font-size: 28px;">Imagen</h3>
+    <img src="./src/images.jpg" alt="Imagen de una pelota" style="margin: 0 auto; display: block; width: 400px; height: 300px;object-fit: cover;object-position: center;">
+  </div>
+  <div class="list">
+    <h3>Lista de equipos</h3>
+    <ul>
+      <li>Liverpool</li>
+      <li>Barça</li>
+      <li>City</li>
+    </ul>
+  </div>
+  <div class="table">
+    <h3>Tabla</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom alumne</th>
+          <th>Cognom Alumne</th>
+          <th>Grup Alumne</th>
+          <th>Email Alumne</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anna</td>
+          <td>Pérez</td>
+          <td>A1</td>
+          <td>anna@example.com</td>
+        </tr>
+        <tr>
+          <td>Joan</td>
+          <td>García</td>
+          <td>B2</td>
+          <td>joan@example.com</td>
+        </tr>
+        <tr>
+          <td>Maria</td>
+          <td>Fernández</td>
+          <td>C3</td>
+          <td>maria@example.com</td>
+        </tr>
+        <tr>
+          <td rowspan="2"></td>
+          <td colspan="2"></td>
+          <td rowspan="2" colspan="2"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  <div class="audio">
+    <div class="audio__container">
+      <audio src="./src/audio.mp3" controls>
+        Your browser does not support the <code>audio</code> element.
+      </audio>      
+      <video src="./src/video.mp4" width="500px" height="400px" type="video/mp4"  controls>
+        Your browser does not support the <code>audio</code> element.
+      </video>
+      <iframe src="./src/activitat15.html" title="W3Schools Free Online Web Tutorials"></iframe> 
+    </div>
+  </div>
+</body>
+</html>

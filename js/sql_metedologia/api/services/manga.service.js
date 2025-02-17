@@ -1,42 +1,50 @@
 const mangaModel = require('../models/manga.model.js'); 
   
 class BookService {
-  static getBooks (req, res) {
-    Book.readAllBooks((err, rows) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(200).json(rows);
-    });
-  }
-
-  static getIdBook (req, res) {
-    readBook(req.params.id, (err, row) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(200).json(row);
-    });
-  }
-
-  static createBook (req, res) {
-    const {title, description, numChapters} = req.body;
-    createBook(title, description, numChapters, (err, data) => {
-      if (err) return res.status(500).send(err.message);
-      res.status(201).send(`Item added ID : ${data.id}`)
-    });
-  }
-
-  static updateBook (req, res) {
-    const {title, description, numChapters} = req.body;
-    updateBook(req.params.id, title, description, numChapters, (err) => {
-      if (err) return res.status(500).send(err);
-      res.status(200).send(`Item is updated`);
+  static getBooks () {
+    return new Promise((resolve, reject) => {
+      mangaModel.readAllBooks((err, rows) => {
+        if (err) return reject(err.message);
+        resolve(rows);
+      }); 
     })
+  };
+
+  static getIdBook (id) {
+    return new Promise((resolve, reject) => {
+      mangaModel.readIdBook(id, (err, row) => {
+        if (err) return reject(err.message);
+        resolve(row);
+      });
+    });
   }
 
-  static deleteBook (req, res) {
-    deleteBook(req.params.id, (err)=>{
-      if(err) return res.status(500).send(err);
-      res.status(200).send(`Item ${req.params.id} is deleted`);
-    })
+  static createBook (title, description, numChapters) {
+    return new Promise((resolve, reject) => {
+      mangaModel.createBook(title, description, numChapters, (err, data) => {
+        if (err) return reject(err.message);
+        resolve(data);
+      });
+    });   
   }
+
+  static updateBook (id, title, description, numChapters) {
+    return new Promise ((resolve, reject) => {
+      mangaModel.updateBook(id, title, description, numChapters, (err) => {
+        if (err) return reject(err.message);
+        resolve(`The item ${id} is updated.`);
+      });    
+    }); 
+  }
+
+  static deleteBook (id) {
+    return new Promise((resolve, reject) => {
+      mangaModel.deleteBook(id, (err) => {
+        if (err) return reject(err.message);
+        resolve(`Item ${id} is delete.`);
+      });
+    });
+  };
 }
 
 module.exports = BookService;
