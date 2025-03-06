@@ -25,10 +25,10 @@ def api_books():
     return make_response(jsonify(books), 200)
 
 
-@app.route('/api/books/<id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/api/books/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def api_book(id):
   if request.method == 'GET':
-    return make_response(jsonify(books.get(id, {})), 200)
+    return make_response(jsonify(books.get(id - 1, {})), 200)
   elif request.method == 'PUT':
     content = request.json
     books[id] = content
@@ -41,4 +41,4 @@ def api_book(id):
 
 
 if __name__ == '__main__': 
-  app.run(debug=False, port=5000)
+  app.run(debug=True, port=5000)
