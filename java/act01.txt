@@ -1,0 +1,14 @@
+Crear classe producto
+	id
+	nombre
+	precio
+Implementar ArrayList<Producto>
+
+Crear un menu:
+	- Agregar producto
+	- Mostrar producto
+	- Buscar un producto por ID
+	- Actualizar precio de un producto por ID
+	- Elimnar por ID
+	- Mostrar un producto mas caro
+	- Salir 

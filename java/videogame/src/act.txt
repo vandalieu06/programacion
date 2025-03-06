@@ -1,0 +1,31 @@
+1. Crea la classe base: Personatge
+    Atributs comuns:
+        nom (String)
+        nivell (int)
+        vida (int)
+    Mètodes comuns:
+        mostrarInfo(): Mostra el nom, nivell i vida del personatge.
+        pujarNivell(): Incrementa el nivell i ajusta la vida.
+        Mètode accioEspecial(): Cada subclasse l’implementarà de manera única.
+
+2. Crea les subclasses: Guerrer, Mag i Arquer
+    Cada subclasse hereta de Personatge.
+    Sobreescriuen el mètode accioEspecial() per realitzar accions úniques:
+        Guerrer: Realitza un atac cos a cos.
+        Mag: Llença un encanteri.
+        Arquer: Dispara una fletxa.
+
+3.Implementa la classe Habilitat
+    Atributs:
+        nom (String)
+        dany (int)
+    Mètodes:
+        usarHabilitat(): Mostra un missatge indicant que s’ha utilitzat l’habilitat i el seu dany.
+
+4.Gestiona el joc amb la classe Joc
+    Atribut estàtic:
+        numPersonatges: Controla quants personatges s’han creat.
+    Mètodes:
+        crearPersonatges(): Permet crear fins a 3 personatges diferents introduint el tipus, nom, nivell i vida.
+        mostrarPersonatges(): Mostra la informació de tots els personatges creats.
+        lluitar(): Simula una batalla entre dos personatges utilitzant les seves habilitats.
