@@ -1,7 +1,9 @@
 from flask import Flask, make_response, jsonify, request
 from content import books
+import dataset
 
 app = Flask(__name__)
+db = dataset.connect('sqlite:///books.db')
 
 @app.route('/')
 def helloWorld():
