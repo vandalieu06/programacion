@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Home {
+public class Home2 {
   public JFrame frameHome;
   public JMenuBar menuBar;
   public JMenu menuCategory1, menuCategory2;
-  public JMenu menuCategory21, menuCategory22, menuCategory23, menuCategory24;
+  public JMenu menuCategory23, menuCategory24;
+  public JMenuItem menuCategory21, menuCategory22;
   public JMenuItem menuitem11, menuitem12, menuitem13;
-  public JMenuItem menuitem2_color1, menuitem2_color2, menuitem2_color3,menuitem2_color4, menuitem2_color5;
   public JMenuItem menuitem2_font1, menuitem2_font2, menuitem2_font3, menuitem2_font4, menuitem2_font5;
   public JMenuItem menuitem2_fontweight1, menuitem2_fontweight2;
   public JMenuItem menuitem2_background1, menuitem2_background2, menuitem2_background3, menuitem2_background4, menuitem2_background5;
@@ -53,8 +53,8 @@ public class Home {
 
     //Creamos las opciones de cambiar fuente y tamaño de texto, y le asignamos
     //opciones predeterminadas
-    menuCategory21 = new JMenu("Font de Text");
-    menuCategory22 = new JMenu("Cambiar Color");
+    menuCategory21 = new JMenuItem("Font de Text");
+    menuCategory22 = new JMenuItem("Escoge Color");
     menuCategory23 = new JMenu("Peso Texto");
     menuCategory24 = new JMenu("Cambiar Fondo");
 
@@ -63,23 +63,6 @@ public class Home {
     menuCategory2.add(menuCategory23);
     menuCategory2.add(menuCategory24);
 
-    //Asignamos las fuentes predeterminadas del cambio de fuente
-    menuitem2_font1 = new JMenuItem("Arial");
-    menuitem2_font2 = new JMenuItem("Comic Sans");
-    menuitem2_font3 = new JMenuItem("Times New Roman");
-    menuitem2_font4 = new JMenuItem("Noto Sans");
-    menuitem2_font5 = new JMenuItem("Consolas");
-    Arrays.asList(menuitem2_font1, menuitem2_font2, menuitem2_font3, menuitem2_font4, menuitem2_font5)
-            .forEach(menuCategory21::add);
-
-    //Asignamos los colores predeterminados de colores
-    menuitem2_color1 = new JMenuItem("Negro");
-    menuitem2_color2 = new JMenuItem("Rojo");
-    menuitem2_color3 = new JMenuItem("Azul");
-    menuitem2_color4 = new JMenuItem("Violeta");
-    menuitem2_color5 = new JMenuItem("Gris");
-    Arrays.asList(menuitem2_color1, menuitem2_color2, menuitem2_color3, menuitem2_color4, menuitem2_color5)
-            .forEach(menuCategory22::add);
 
     //Ponemos a disposion los dos tipos de peso de texto
     menuitem2_fontweight1 = new JMenuItem("Normal");
@@ -163,35 +146,31 @@ public class Home {
     }
   }
 
-  private void changeColor(ActionEvent e){
-    //A traves de e.getSource obtenemos la opción pulsada (id del componente), con esto lo
-    // podemos comparar para que realice un cambio de color u otro segun el componente que
-    // queramos (lo que hacen es comprar si la id del componente son iguales).
-    if (e.getSource() == menuitem2_color1){
-      textNote.setForeground(new Color(11,13,10,255));
-    } else if (e.getSource() == menuitem2_color2) {
-      textNote.setForeground(new Color(230, 48, 54,255));
-    } else if (e.getSource() == menuitem2_color3) {
-      textNote.setForeground(new Color(37,156,196));
-    } else if (e.getSource() == menuitem2_color4) {
-      textNote.setForeground(new Color(172, 26, 182));
-    } else if (e.getSource() == menuitem2_color5) {
-      textNote.setForeground(new Color(174, 179, 180));
+  private void changeColors(){
+    Color colorSeleccionado = Color.BLACK;
+    colorSeleccionado = JColorChooser.showDialog(null, "Elige un color", colorSeleccionado);
+    if (colorSeleccionado == null){
+      colorSeleccionado = Color.BLACK;
+      JOptionPane.showMessageDialog(null, "No has escogido ningun color, se pondra el predeterminado.");
     }
+    textNote.setForeground(colorSeleccionado);
   }
 
-  private void changeFontStyle(ActionEvent e){
-    if (e.getSource() == menuitem2_font1){
-      //GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-      textNote.setFont(new Font("Arial", Font.PLAIN, 12));
-    } else if (e.getSource() == menuitem2_font2) {
-      textNote.setFont(new Font("Helvetica", Font.PLAIN, 12));
-    } else if (e.getSource() == menuitem2_font3) {
-      textNote.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-    } else if (e.getSource() == menuitem2_font4) {
-      textNote.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-    } else if (e.getSource() == menuitem2_font5) {
-      textNote.setFont(new Font("Consolas", Font.PLAIN, 12));
+  private void changeFontStyle(){
+    String[] fuentes = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+
+    String selectedFont = (String) JOptionPane.showInputDialog(
+            null,
+            "Selecciona una fuente:",
+            "Cambiar Fuente",
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            fuentes,
+            textNote.getFont().getFamily()
+    );
+
+    if (selectedFont != null) {
+      textNote.setFont(new Font(selectedFont, Font.PLAIN, textNote.getFont().getSize()));
     }
   }
 
@@ -219,21 +198,10 @@ public class Home {
       frameHome.dispose();
     });
     //Añadimos evento para las fuente de texto
-    menuitem2_font1.addActionListener(this::changeFontStyle);
-    //El codigo anterior "this::changeFontStyle" es lo mismo que poner una funcion lamba
-    //"(e) -> changeFontStyle(e)"
-    menuitem2_font2.addActionListener(this::changeFontStyle);
-    menuitem2_font3.addActionListener(this::changeFontStyle);
-    menuitem2_font4.addActionListener(this::changeFontStyle);
-    menuitem2_font5.addActionListener(this::changeFontStyle);
+    menuCategory21.addActionListener((e) -> changeFontStyle());
 
     //Añadimos evento para los colores del texto
-    menuitem2_color1.addActionListener(this::changeColor);
-    menuitem2_color2.addActionListener(this::changeColor);
-    menuitem2_color3.addActionListener(this::changeColor);
-    menuitem2_color4.addActionListener(this::changeColor);
-    menuitem2_color5.addActionListener(this::changeColor);
-    //menuCategory22.addActionListener(this::changeColor);
+    menuCategory22.addActionListener((e) -> changeColors());
 
     //Assignamos los evento de las opciones de peso de fuente
     menuitem2_fontweight1.addActionListener((e) -> {
@@ -255,7 +223,7 @@ public class Home {
 
   }
 
-  public Home (){
+  public Home2(){
     //Se crea la ventana principal con las propiedades por defecto
     createFrame();
     //Creamos el menu y asignamos las opciones predeterminadas
