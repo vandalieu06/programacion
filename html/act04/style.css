@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/*El codigo no es del todo limpio*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'Nunito';
+}
+
+.about-me{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.about-me__container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 0px;
+}
+.about-me__box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 60px;
+  gap: 20px;
+}
+.about-me__box:nth-child(1){
+  background-color: #f3f3f3;
+}
+.about-me__box:nth-child(2){
+  background-color: #d9d9d9;
+}
+.about-me__box--div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*PRIMERA SECCION*/
+.about-me__box--div:nth-child(1){
+  background-color: #fefefe;
+}
+.about-me__box--div h3{
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 800;
+}
+.about-me__box--div h4{
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 400;
+}
+.about-me__box--icons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.about-me__box--icons i{
+  font-size: 2rem;
+}
+
+.about-me__btn{
+  display: block;
+  width: 200px;
+  padding: 8px 30px;
+  background-color: #292929;
+  border: none;
+  border-radius: 2px;
+}
+.about-me__btn:nth-child(3){
+  margin: 30px 0px;
+}
+.about-me__btn--link{
+  color: #fefefe;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: none;
+}
+
+/*SEGUNDA SECCION*/
+.about-me__box:nth-child(2){
+  align-items: start;
+  gap: 5px;
+}
+.about-me__box:nth-child(2) h2{
+  font-size: 3rem;
+  text-align: start;
+  font-weight: 700;
+}
+
+.about-me__box--btns{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:  40px;
+  margin-top: 100px;
+}
+
+@media (max-width: 850px){
+  .about-me__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-me__box--btns{
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap:  10px;
+    margin-top: 30px;
+  }
+  .about-me__box--img{
+    width: 150px;
+  }
+}

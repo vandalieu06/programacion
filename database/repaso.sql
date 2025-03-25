@@ -218,6 +218,7 @@ END;
         - SI el departamento no tiene empleado retorna -1 
           > COUNT
 */
+
 CREATE OR REPLACE FUNCTION func_mayor_o_menor(p_depname VARCHAR2, p_option VARCHAR2)
 RETURN NUMBER IS
   v_salary NUMBER;
@@ -233,7 +234,7 @@ BEGIN
         SELECT MAX(SALARY) 
         FROM EMPLOYEES 
         WHERE DEPARTMENT_ID = dep.department_id
-      );
+      );--AND ROWNUM = 1; --Mostrar solo una fila, es algo similar a LIMIT de otro tipo de base de datos como MYSQL, MARIADB, SQLite... 
   ELSIF UPPER(p_option) = 'LESS' THEN
     SELECT emp.employee_id
       INTO v_salary
@@ -253,3 +254,28 @@ END;
 
 SELECT func_mayor_o_menor('Marketing', 'More') FROM DUAL;
 SELECT func_mayor_o_menor('Marketing', 'Less') FROM DUAL;
+
+
+/*
+  TIPO: Procedimiento
+  NOMBRE: proc_create_department
+  INPUT: p_name VARCHAR2, p_loc NUMBER, p_man NUMBER
+  DESCRIPTION: al procedimiento le pasaremo un nombre de depatrtamento (nuevo), el id de una 
+               localizacion y el id de un empleado manager. Se debera insertar un nuevo registro 
+               en la tabla departmanetos (copy_departments). Usa la secuencia de departments (departments_seq) 
+               para insertar los nuevo IDs 
+  ERRORES: 
+          - Si el department_name esta repetido genera un error e informa.
+          - Si el department name o la lacalizacion id esta en NULL, genera un error e informa
+          - Si no existe el location_id, genera un error e informa   
+          - Si no existe el empleado (p_man), genera un errro e infroma.
+*/
+
+CREATE TABLE cp_departments AS SELECT * FROM DEPARTMENTS;
+
+CREATE OR REPLACE PROCEDURE proc_create_department(p_name VARCHAR2, p_loc NUMBER, p_man NUMBER)
+IS  
+
+BEGIN
+
+END;
