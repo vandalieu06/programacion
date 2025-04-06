@@ -10,6 +10,10 @@ public class Game {
   private JPanel pSequence, pBtns;
   private JPanel sColor1, sColor2, sColor3, sColor4;
   private JButton btn1, btn2, btn3, btn4;
+  private boolean userTurn = false;
+  ArrayList<Integer> botColors = new ArrayList<>();
+  ArrayList<Integer> userBtnClicked = new ArrayList<>();
+  private int currentLevel = 4;
 
   public void createFrame(){
     frame = new JFrame();
@@ -88,14 +92,15 @@ public class Game {
   }
 
   public void startSimon() {
-    ArrayList<Integer> botColors = new ArrayList<>();
     ArrayList<JPanel> colorPanels = new ArrayList<>();
     colorPanels.add(sColor1);
     colorPanels.add(sColor2);
     colorPanels.add(sColor3);
     colorPanels.add(sColor4);
 
-    for (int i = 0; i < 4; i++) {
+    botColors.clear(); // Limpiamos el ArrayList de colores
+    //Generamos los numeros que coresponden a un panel/color
+    for (int i = 0; i < currentLevel; i++) {
       int numRandom = (int) (Math.random() * 4);
       botColors.add(numRandom);
     }
@@ -107,11 +112,126 @@ public class Game {
       showColorTimer(delay, tmpPanel); // Enviamos el delay y el panel del color
       delay += 1000; // Aumentamos en 1000 ms que es lo que se tarda en mostrar y ocultar el panel
     }
+
+    // Ejecutamos  el turno del usuario después de mostrar los paneles decolores
+    Timer enableUserInput = new Timer(delay, e -> {
+      userTurn = true;
+      userBtnClicked.clear(); // Limpiamos el array que guarda el buton pulsado del usuario
+    });
+    enableUserInput.setRepeats(false);
+    enableUserInput.start();
+
+  }
+
+  public int btnClicked(JButton btn){
+    if (btn == btn1){
+      return 0;
+    } else if (btn == btn2) {
+      return 1;
+    } else if (btn == btn3) {
+      return 2;
+    } else if (btn == btn4) {
+      return 3;
+    } else {
+      return -1;
+    }
   }
 
   public void userBtns(){
-    Arrays.asList(btn1, btn2, btn3, btn4).forEach(pBtns::add);
-    btn1.doClick();
+    btn1.addActionListener(e -> {
+      if (userTurn) {
+        int id = btnClicked(btn1);
+        userBtnClicked.add(id);
+        checkUserSequence();
+      }
+    });
+    btn2.addActionListener(e -> {
+      if (userTurn) {
+        int id = btnClicked(btn2);
+        userBtnClicked.add(id);
+        checkUserSequence();
+      }
+    });
+    btn3.addActionListener(e -> {
+      if (userTurn) {
+        int id = btnClicked(btn3);
+        userBtnClicked.add(id);
+        checkUserSequence();
+      }
+    });
+    btn4.addActionListener(e -> {
+      if (userTurn) {
+        int id = btnClicked(btn4);
+        userBtnClicked.add(id);
+        checkUserSequence();
+      }
+    });
+  }
+
+
+  private void checkUserSequence() {
+    boolean correct = true; // Variable que guarda si la sequencia es la misma
+
+    // Comprovamos una pòr una si los numero guardados en las ArrayList son iguales, si no
+    // lo son entonces la variable correct se torna false
+    for (int i = 0; i < botColors.size(); i++) {
+      if (!userBtnClicked.get(i).equals(botColors.get(i))) {
+        correct = false;
+        break;
+      }
+    }
+
+    // Condicional que muestra un JOptionPane para mostrar si la sequencia és
+    // correcto o no, ademas si quieres volver a jugar.
+    if (correct) {
+      int option = JOptionPane.showConfirmDialog(
+              frame,
+              "¡Correcto! Nivel completado.\n¿Quieres continuar al siguiente nivel?",
+              "¡Bien hecho!",
+              JOptionPane.YES_NO_OPTION
+      );
+      // Si volvemos a jugar entonces subimos la cantidad de paneles que se mostraran,
+      // indicamos que ya no sera el turno del jugador, limpiamos los los botones pulsados
+      // por el usuario, ocultamos los paneles y volvemos a cargar el juego. Sino volvemos a
+      // jugar mostramos un mensaje y cerramos la ventana
+
+      if (option == JOptionPane.YES_OPTION) {
+        currentLevel++;
+        userTurn = false;
+        userBtnClicked.clear();
+        opaqueColors();
+        startSimon(); // Iniciar siguiente nivel
+      } else {
+        JOptionPane.showMessageDialog(frame, "¡Gracias por jugar!");
+        frame.dispose(); // Cerrar el juego
+      }
+
+    } else {
+      // Si la sequencia no es la misma mostramos un mensaje de GameOver y le preguntamos
+      // si quiere volver a intentarlo, se le aplicaran las opciones por defecto.
+      int option = JOptionPane.showConfirmDialog(
+              frame,
+              "¡Incorrecto! Game Over.\n¿Quieres volver a intentarlo?",
+              "Fin del juego",
+              JOptionPane.YES_NO_OPTION
+      );
+
+      if (option == JOptionPane.YES_OPTION) {
+        resetGame();
+      } else {
+        frame.dispose(); // Cerrar el juego
+      }
+    }
+  }
+
+  // Funcion para que el usuario pueda volver a jugar con todas las opciones en default y por defecto
+  private void resetGame() {
+    botColors.clear();
+    currentLevel = 4;
+    userBtnClicked.clear();
+    userTurn = false;
+    opaqueColors();
+    startSimon();
   }
 
 
@@ -120,6 +240,7 @@ public class Game {
     createContainers();
     addContent();
     frame.setVisible(true);
+    userBtns();
     opaqueColors();
     startSimon();
   }

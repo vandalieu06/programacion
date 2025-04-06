@@ -1,0 +1,9 @@
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.3); /* negro con opacidad */
+    z-index: 1;
+  }
+  
+  .carousel-caption, .container {
+    z-index: 2;
+  }
+  
