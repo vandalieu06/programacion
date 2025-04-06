@@ -5,3 +5,29 @@
 .pricing-header {
   max-width: 700px;
 }
+
+.btn-primary{
+  background-color: #AFDDFF !important;
+  border: none;
+  transition: 300ms;
+}
+.btn-primary:hover{
+  background-color: #60B5FF !important;
+}
+.btn-outline-primary{
+  border: 1px solid #AFDDFF;
+}
+.btn-outline-primary:hover{
+  background-color: #60B5FF !important;
+}
+.border-primary{
+  border: 1px solid #AFDDFF !important;
+}
+.text-bg-primary{
+  background-color: #AFDDFF !important;
+}
+.img-icon{
+  max-width: 100px;
+  border-radius: 100%;
+  margin-right: 20px;
+}
