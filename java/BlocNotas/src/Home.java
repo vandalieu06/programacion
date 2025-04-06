@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Style;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -9,27 +10,23 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Home {
-  public JFrame frameHome;
-  public JMenuBar menuBar;
-  public JMenu menuCategory1, menuCategory2;
-  public JMenu menuCategory21, menuCategory22, menuCategory23, menuCategory24;
-  public JMenuItem menuitem11, menuitem12, menuitem13;
-  public JMenuItem menuitem2_color1, menuitem2_color2, menuitem2_color3,menuitem2_color4, menuitem2_color5;
-  public JMenuItem menuitem2_font1, menuitem2_font2, menuitem2_font3, menuitem2_font4, menuitem2_font5;
-  public JMenuItem menuitem2_fontweight1, menuitem2_fontweight2;
-  public JMenuItem menuitem2_background1, menuitem2_background2, menuitem2_background3, menuitem2_background4, menuitem2_background5;
-  public JTextArea textNote;
+  private JFrame frameHome;
+  private JMenuBar menuBar;
+  private JMenu menuCategory1, menuCategory2;
+  private JMenu menuCategory21, menuCategory22;
+  private JMenuItem menuitem11, menuitem12, menuitem13;
+  private JMenuItem menuitem2_color1, menuitem2_color2, menuitem2_color3,menuitem2_color4, menuitem2_color5;
+  private JMenuItem menuitem2_font1, menuitem2_font2, menuitem2_font3, menuitem2_font4, menuitem2_font5;
+  private JTextArea textNote;
 
   private void createFrame(){
     frameHome = new JFrame();
-    //Si el componente es nulo la ventana se coloca en el centro de la pantalla.
-    frameHome.setLocationRelativeTo(null);
     frameHome.setTitle("Bloc de Notas");
     frameHome.setSize(600, 500);
     frameHome.setResizable(false);
     frameHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frameHome.setLayout(new GridLayout(1, 1));
-
+    frameHome.setVisible(true);
+    frameHome.setLayout(new GridLayout(2, 1));
   }
 
   private void createMenu(){
@@ -55,20 +52,16 @@ public class Home {
     //opciones predeterminadas
     menuCategory21 = new JMenu("Font de Text");
     menuCategory22 = new JMenu("Cambiar Color");
-    menuCategory23 = new JMenu("Peso Texto");
-    menuCategory24 = new JMenu("Cambiar Fondo");
-
     menuCategory2.add(menuCategory21);
     menuCategory2.add(menuCategory22);
-    menuCategory2.add(menuCategory23);
-    menuCategory2.add(menuCategory24);
 
+    // AÑADIR MAS TARDE (Graphics Environment, JOptionPane, JColorChoose)
     //Asignamos las fuentes predeterminadas del cambio de fuente
     menuitem2_font1 = new JMenuItem("Arial");
     menuitem2_font2 = new JMenuItem("Comic Sans");
-    menuitem2_font3 = new JMenuItem("Times New Roman");
-    menuitem2_font4 = new JMenuItem("Noto Sans");
-    menuitem2_font5 = new JMenuItem("Consolas");
+    menuitem2_font3 = new JMenuItem("Arial");
+    menuitem2_font4 = new JMenuItem("Arial");
+    menuitem2_font5 = new JMenuItem("Arial");
     Arrays.asList(menuitem2_font1, menuitem2_font2, menuitem2_font3, menuitem2_font4, menuitem2_font5)
             .forEach(menuCategory21::add);
 
@@ -80,38 +73,13 @@ public class Home {
     menuitem2_color5 = new JMenuItem("Gris");
     Arrays.asList(menuitem2_color1, menuitem2_color2, menuitem2_color3, menuitem2_color4, menuitem2_color5)
             .forEach(menuCategory22::add);
-
-    //Ponemos a disposion los dos tipos de peso de texto
-    menuitem2_fontweight1 = new JMenuItem("Normal");
-    menuitem2_fontweight2 = new JMenuItem("Negrita");
-    menuCategory23.add(menuitem2_fontweight1);
-    menuCategory23.add(menuitem2_fontweight2);
-
-    //Assignammos los tipos de fondos disponibles (colores claros )
-    menuitem2_background1 = new JMenuItem("Gris Claro");
-    menuitem2_background2 = new JMenuItem("Rosa Claro");
-    menuitem2_background3 = new JMenuItem("Azul Claro");
-    menuitem2_background4 = new JMenuItem("Purpura Claro");
-    menuitem2_background5 = new JMenuItem("Blanco");
-    Arrays.asList(menuitem2_background1, menuitem2_background2, menuitem2_background3, menuitem2_background4, menuitem2_background5)
-            .forEach(menuCategory24::add);
   }
 
   private void createTextArea(){
     textNote =  new JTextArea();
-    //Cuando el texto tqoeu el borde haga un salto de linea
     textNote.setLineWrap(true);
-    //Añadimo margenes alrededor del TextArea para que el texto no toque los bordes
     textNote.setMargin(new Insets(20,20, 20, 20));
-    //Definimos la fuente de texto por defecto
-    textNote.setFont(new Font("Arial", Font.PLAIN, 12));
-
-    // Envolver el JTextArea en un JScrollPane para tener un scroll del en el TextArea
-    JScrollPane scrollPane = new JScrollPane(textNote);
-    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Scroll vertical siempre visible
-
-    // Añadimo el scrollPane en el contenedor
-    frameHome.add(scrollPane);
+    frameHome.add(textNote);
   }
 
   private void openFileViaExplorer(){
@@ -164,68 +132,46 @@ public class Home {
   }
 
   private void changeColor(ActionEvent e){
-    //A traves de e.getSource obtenemos la opción pulsada (id del componente), con esto lo
-    // podemos comparar para que realice un cambio de color u otro segun el componente que
-    // queramos (lo que hacen es comprar si la id del componente son iguales).
     if (e.getSource() == menuitem2_color1){
       textNote.setForeground(new Color(11,13,10,255));
     } else if (e.getSource() == menuitem2_color2) {
-      textNote.setForeground(new Color(230, 48, 54,255));
+      textNote.setForeground(new Color(230,119,48,255));
     } else if (e.getSource() == menuitem2_color3) {
       textNote.setForeground(new Color(37,156,196));
     } else if (e.getSource() == menuitem2_color4) {
-      textNote.setForeground(new Color(172, 26, 182));
+      textNote.setForeground(new Color(65,4,69));
     } else if (e.getSource() == menuitem2_color5) {
-      textNote.setForeground(new Color(174, 179, 180));
+      textNote.setForeground(new Color(199,217,221));
     }
   }
 
-  private void changeFontStyle(ActionEvent e){
+  private void changeFontSyle(ActionEvent e){
     if (e.getSource() == menuitem2_font1){
       //GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-      textNote.setFont(new Font("Arial", Font.PLAIN, 12));
+      textNote.setFont(new Font("Arial", Font.PLAIN, 20));
     } else if (e.getSource() == menuitem2_font2) {
-      textNote.setFont(new Font("Helvetica", Font.PLAIN, 12));
+      textNote.setFont(new Font("Helvetica", Font.PLAIN, 20));
     } else if (e.getSource() == menuitem2_font3) {
-      textNote.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+      textNote.setFont(new Font("Times New Roman", Font.PLAIN, 20));
     } else if (e.getSource() == menuitem2_font4) {
-      textNote.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+      textNote.setFont(new Font("Arial", Font.PLAIN, 20));
     } else if (e.getSource() == menuitem2_font5) {
-      textNote.setFont(new Font("Consolas", Font.PLAIN, 12));
+      textNote.setFont(new Font("Arial", Font.PLAIN, 20));
     }
   }
 
-  private void changeBackgroundColor(ActionEvent e){
-    if (e.getSource() == menuitem2_background1){
-      textNote.setBackground(new Color(187, 186, 186, 56));
-    } else if (e.getSource() == menuitem2_background2) {
-      textNote.setBackground(new Color(239, 123, 235, 153));
-    } else if (e.getSource() == menuitem2_background3) {
-      textNote.setBackground(new Color(37,156,196, 139));
-    } else if (e.getSource() == menuitem2_background4) {
-      textNote.setBackground(new Color(125, 9, 133, 61));
-    } else if (e.getSource() == menuitem2_background5) {
-      textNote.setBackground(new Color(255, 255, 255));
-    }
-  }
 
   private void assignEventsComponents(){
     //Evento para la opción de guardar archivo
-    menuitem11.addActionListener((e) -> saveFileViaExplorer());
+    menuitem11.addActionListener((e) -> { saveFileViaExplorer(); });
     //Evento para la opción de abrir archivo
-    menuitem12.addActionListener((e) -> openFileViaExplorer());
-    //Cerrar programa llamando el metodo dispose() del frame
-    menuitem13.addActionListener((e) -> {
-      frameHome.dispose();
-    });
+    menuitem12.addActionListener((e) -> { openFileViaExplorer(); });
     //Añadimos evento para las fuente de texto
-    menuitem2_font1.addActionListener(this::changeFontStyle);
-    //El codigo anterior "this::changeFontStyle" es lo mismo que poner una funcion lamba
-    //"(e) -> changeFontStyle(e)"
-    menuitem2_font2.addActionListener(this::changeFontStyle);
-    menuitem2_font3.addActionListener(this::changeFontStyle);
-    menuitem2_font4.addActionListener(this::changeFontStyle);
-    menuitem2_font5.addActionListener(this::changeFontStyle);
+    menuitem2_font1.addActionListener(this::changeFontSyle);
+    menuitem2_font2.addActionListener(this::changeFontSyle);
+    menuitem2_font3.addActionListener(this::changeFontSyle);
+    menuitem2_font4.addActionListener(this::changeFontSyle);
+    menuitem2_font5.addActionListener(this::changeFontSyle);
 
     //Añadimos evento para los colores del texto
     menuitem2_color1.addActionListener(this::changeColor);
@@ -234,25 +180,6 @@ public class Home {
     menuitem2_color4.addActionListener(this::changeColor);
     menuitem2_color5.addActionListener(this::changeColor);
     //menuCategory22.addActionListener(this::changeColor);
-
-    //Assignamos los evento de las opciones de peso de fuente
-    menuitem2_fontweight1.addActionListener((e) -> {
-      //Obtenemos el actual estilo y a traves del metodo deriveFont() cambiamos
-      //el estilo (weight) del texto.
-      textNote.setFont(textNote.getFont().deriveFont(Font.PLAIN));
-    });
-    menuitem2_fontweight2.addActionListener((e) -> {
-      textNote.setFont(textNote.getFont().deriveFont(Font.BOLD));
-    });
-
-    //Asignamos el canvio de color del fondo a las opciones
-    menuitem2_background1.addActionListener(this::changeBackgroundColor);
-    menuitem2_background2.addActionListener(this::changeBackgroundColor);
-    menuitem2_background3.addActionListener(this::changeBackgroundColor);
-    menuitem2_background4.addActionListener(this::changeBackgroundColor);
-    menuitem2_background5.addActionListener(this::changeBackgroundColor);
-
-
   }
 
   public Home (){
@@ -264,9 +191,6 @@ public class Home {
     createTextArea();
     //Asignamos eventos a las opciones
     assignEventsComponents();
-    //Mostramos los componentes en la ventana
-    frameHome.setVisible(true);
-
   }
 
 }

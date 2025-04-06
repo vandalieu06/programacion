@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Tienda {
-  public Tienda(){
-  }
+  public Tienda(){}
 
   public void start(){
     ArrayList<String> nombres = new ArrayList<>();
@@ -12,12 +11,10 @@ public class Tienda {
     nombres.add("Maria");
     nombres.add("El pepe");
     nombres.add("Pepaps");
-
     System.out.println(nombres.get(0));
     System.out.println(nombres.get(1));
     System.out.println(nombres.get(2));
-    System.out.println("Ana esta en la posicion: " + nombres.indexOf("Ana"));
-    //Si no encutra alguana coincidente con el parametro devuelve -1
+    System.out.println("Ana esta en la posicion: " + nombres.indexOf("Ana"));//Si no encutra alguana coincidente con el parametro devuelve -1
 
     Collections.sort(nombres); //Ordenar alfabeticamente
     Collections.reverse(nombres); //Invertir array
