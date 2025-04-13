@@ -6,7 +6,7 @@ public class StorageBook {
 
     public StorageBook() {
         books.add(new Book("The Book", "Juan", "10/06/24", false));
-        books.add(new Book("Infinitivo: Generación ", "Jhonny", "11/02/22", false));
+        books.add(new Book("Infinitivo: Generación ", "Jhonny", "11/02/22", true));
         books.add(new Book("¡Cállate, Dragón Malévolo! No quiero tener más hijos contigo. ", "Miquel", "31/01/23", false));
     }
 
@@ -31,5 +31,9 @@ public class StorageBook {
 
     public void deleteBook(int id){
         books.remove(id);
+    }
+
+    public void updateBook(int id, Book book){
+        books.set(id, book);
     }
 }

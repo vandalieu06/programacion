@@ -22,4 +22,8 @@ public class Book {
     public String getDate() {
         return date;
     }
+
+    public boolean getState() {
+        return state;
+    }
 }

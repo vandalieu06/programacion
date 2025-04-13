@@ -9,7 +9,8 @@ public class Gestor {
     private JLabel title;
     private JComboBox<String> selectBookList;
     private JButton addBtn, updateBtn, deletenBtn, returnBtn;
-    private JLabel selectBook, titleBook, autorBook, dateBook;
+    private JLabel selectBook, titleBook, autorBook, dateBook, stateBook;
+    private JCheckBox stateBookCheck;
     private JTextField inputTitle, inputAutor, inputDate;
     private StorageBook books = StorageBook.getInstance();
 
@@ -20,29 +21,40 @@ public class Gestor {
         frameGestor.setResizable(false);
     }
 
+    private void updateListBooks(){
+        System.out.println("Actualizando lista de libros...");
+        selectBookList.removeAllItems();
+        selectBookList.addItem("Seleccionar...");
+        for (int i = 0; i < books.getBooks().size(); i++){
+            selectBookList.addItem(books.getBook(i).getTitle());
+        }
+    }
+
     private void createForm(){
         boxForm.setLayout(new GridLayout(5, 4, 20, 10));
         selectBook = new JLabel("Selecciona un libro: ");
         titleBook = new JLabel("Titulo: ");
         autorBook = new JLabel("Autor: ");
         dateBook = new JLabel("Fecha: ");
+        stateBook = new JLabel("Estado (Prestado): ");
 
         selectBookList = new JComboBox<String>();
-        selectBookList.addItem("Seleccionar...");
-        for (int i = 0; i < books.getBooks().size(); i++){
-            selectBookList.addItem(books.getBook(i).getTitle());
-        }
+        updateListBooks();
 
         selectBookList.addItemListener(e -> {
+            addBtn.setEnabled(false);
             int num = selectBookList.getSelectedIndex() - 1;
             inputTitle.setText(books.getBook(num).getTitle());
             inputAutor.setText(books.getBook(num).getAutor());
             inputDate.setText(books.getBook(num).getDate());
+            stateBookCheck.setSelected(books.getBook(num).getState());
         });
 
         inputTitle = new JTextField();
         inputAutor = new JTextField();
         inputDate = new JTextField();
+        stateBookCheck = new JCheckBox();
+        stateBookCheck.setSelected(false);
 
         boxForm.add(selectBook);
         boxForm.add(selectBookList);
@@ -52,6 +64,16 @@ public class Gestor {
         boxForm.add(inputAutor);
         boxForm.add(dateBook);
         boxForm.add(inputDate);
+        boxForm.add(stateBook);
+        boxForm.add(stateBookCheck);
+    }
+
+    private void clearForm(){
+        selectBookList.setSelectedIndex(1);
+        inputTitle.setText("");
+        inputAutor.setText("");
+        inputDate.setText("");
+        stateBookCheck.setSelected(false);
     }
 
     private void initContent(){
@@ -81,6 +103,24 @@ public class Gestor {
     }
 
     private void addActionButtons(){
+        updateBtn.addActionListener(e -> {
+            int num = selectBookList.getSelectedIndex() - 1;
+            String titleText = inputTitle.getText();
+            String autorText = inputAutor.getText();
+            String dateText = inputDate.getText();
+            boolean statusBookBol = stateBookCheck.isSelected();
+            books.updateBook(num, new Book(titleText, autorText, dateText, statusBookBol));
+            clearForm();
+            updateListBooks();
+            addBtn.setEnabled(true);
+        });
+        deletenBtn.addActionListener( e -> {
+            int num = selectBookList.getSelectedIndex() - 1;
+            books.deleteBook(num);
+            clearForm();
+            updateListBooks();
+            addBtn.setEnabled(true);
+        });
         returnBtn.addActionListener(e -> {
             new Home();
             frameGestor.dispose();
