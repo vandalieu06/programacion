@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 
 public class Gestor {
     private JFrame frameGestor = new JFrame("Gestor de Libros");
@@ -42,13 +43,23 @@ public class Gestor {
         updateListBooks();
 
         selectBookList.addItemListener(e -> {
-            addBtn.setEnabled(false);
-            int num = selectBookList.getSelectedIndex() - 1;
-            inputTitle.setText(books.getBook(num).getTitle());
-            inputAutor.setText(books.getBook(num).getAutor());
-            inputDate.setText(books.getBook(num).getDate());
-            stateBookCheck.setSelected(books.getBook(num).getState());
-        });
+            int selectedIndex = selectBookList.getSelectedIndex();
+            if (selectedIndex > 0) {  // Only if a real book is selected
+                int num = selectedIndex - 1;
+                addBtn.setEnabled(false);
+                inputTitle.setText(books.getBook(num).getTitle());
+                inputAutor.setText(books.getBook(num).getAutor());
+                inputDate.setText(books.getBook(num).getDate());
+                stateBookCheck.setSelected(books.getBook(num).getState());
+            } else {
+                // Clear fields when "Seleccionar..." is chosen
+                inputTitle.setText("");
+                inputAutor.setText("");
+                inputDate.setText("");
+                stateBookCheck.setSelected(false);
+                addBtn.setEnabled(true);
+            }
+    });
 
         inputTitle = new JTextField();
         inputAutor = new JTextField();
@@ -69,7 +80,7 @@ public class Gestor {
     }
 
     private void clearForm(){
-        selectBookList.setSelectedIndex(1);
+        selectBookList.setSelectedIndex(0);
         inputTitle.setText("");
         inputAutor.setText("");
         inputDate.setText("");
@@ -104,26 +115,47 @@ public class Gestor {
 
     private void addActionButtons(){
         updateBtn.addActionListener(e -> {
-            int num = selectBookList.getSelectedIndex() - 1;
-            String titleText = inputTitle.getText();
-            String autorText = inputAutor.getText();
-            String dateText = inputDate.getText();
-            boolean statusBookBol = stateBookCheck.isSelected();
-            books.updateBook(num, new Book(titleText, autorText, dateText, statusBookBol));
-            clearForm();
-            updateListBooks();
-            addBtn.setEnabled(true);
+            int selectedIndex = selectBookList.getSelectedIndex();
+            if (selectedIndex > 0) {
+                int num = selectedIndex - 1;
+                String titleText = inputTitle.getText();
+                String autorText = inputAutor.getText();
+                String dateText = inputDate.getText();
+                boolean statusBookBol = stateBookCheck.isSelected();
+                books.updateBook(num, new Book(titleText, autorText, dateText, statusBookBol));
+                updateListBooks();
+            } else {
+                JOptionPane.showMessageDialog(frameGestor,
+                        "Por favor seleccione un libro para actualizar",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
         deletenBtn.addActionListener( e -> {
-            int num = selectBookList.getSelectedIndex() - 1;
-            books.deleteBook(num);
-            clearForm();
-            updateListBooks();
-            addBtn.setEnabled(true);
+            int selectedIndex = selectBookList.getSelectedIndex();
+            if (selectedIndex > 0) {
+                int num = selectedIndex -1;
+                books.deleteBook(num);
+                clearForm();
+                updateListBooks();
+                addBtn.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(frameGestor,
+                        "Por favor seleccione un libro para eliminar",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
         returnBtn.addActionListener(e -> {
             new Home();
             frameGestor.dispose();
+        });
+        addBtn.addActionListener(e -> {
+            String titleText = inputTitle.getText();
+            String autorText = inputAutor.getText();
+            String dateText = inputDate.getText();
+            boolean statusBookBol = stateBookCheck.isSelected();
+            books.createBook(new Book(titleText, autorText, dateText, statusBookBol));
+            clearForm();
+            updateListBooks();
         });
     }
 

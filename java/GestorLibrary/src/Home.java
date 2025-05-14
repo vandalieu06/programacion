@@ -57,7 +57,7 @@ public class Home {
             homeFrame.dispose();
         });
         btnConsult.addActionListener(e -> {
-            new Consulta();
+            new VistaBooks();
             homeFrame.dispose();
         });
         btnExit.addActionListener(e -> {
