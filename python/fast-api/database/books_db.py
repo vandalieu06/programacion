@@ -1,0 +1,72 @@
+book_db = [
+    {
+        "book_id": 1,
+        "title": "Cien años de soledad",
+        "author": "Gabriel García Márquez",
+        "genre": "Realismo mágico",
+        "url_portada": "https://ejemplo.com/portada1.jpg",
+    },
+    {
+        "book_id": 2,
+        "title": "1984",
+        "author": "George Orwell",
+        "genre": "Ciencia ficción",
+        "url_portada": "https://ejemplo.com/portada2.jpg",
+    },
+    {
+        "book_id": 3,
+        "title": "El Principito",
+        "author": "Antoine de Saint-Exupéry",
+        "genre": "Fábula",
+        "url_portada": None,  # Sin portada
+    },
+    {
+        "book_id": 4,
+        "title": "Don Quijote de la Mancha",
+        "author": "Miguel de Cervantes",
+        "genre": "Novela clásica",
+        "url_portada": "https://ejemplo.com/portada4.jpg",
+    },
+    {
+        "book_id": 5,
+        "title": "Orgullo y prejuicio",
+        "author": "Jane Austen",
+        "genre": "Romance",
+        "url_portada": "https://ejemplo.com/portada5.jpg",
+    },
+    {
+        "book_id": 6,
+        "title": "Harry Potter y la piedra filosofal",
+        "author": "J.K. Rowling",
+        "genre": "Fantasía",
+        "url_portada": "https://ejemplo.com/portada6.jpg",
+    },
+    {
+        "book_id": 7,
+        "title": "Crónica de una muerte anunciada",
+        "author": "Gabriel García Márquez",
+        "genre": "Novela",
+        "url_portada": None,
+    },
+    {
+        "book_id": 8,
+        "title": "Fahrenheit 451",
+        "author": "Ray Bradbury",
+        "genre": "Distopía",
+        "url_portada": "https://ejemplo.com/portada8.jpg",
+    },
+    {
+        "book_id": 9,
+        "title": "Los juegos del hambre",
+        "author": "Suzanne Collins",
+        "genre": "Aventura",
+        "url_portada": "https://ejemplo.com/portada9.jpg",
+    },
+    {
+        "book_id": 10,
+        "title": "El señor de los anillos",
+        "author": "J.R.R. Tolkien",
+        "genre": "Fantasía épica",
+        "url_portada": "https://ejemplo.com/portada10.jpg",
+    },
+]
